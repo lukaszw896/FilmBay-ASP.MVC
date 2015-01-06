@@ -74,7 +74,18 @@ namespace FilmBayMVC
 
         }
 
+        public  static bool isAdmin(String userName)
+        {
+            
+                AspNetUser userTable = new AspNetUser();
+                userTable.UserName = userName;
+                MyLINQDataContext context = new MyLINQDataContext();
+                bool isAdmin = (context.AspNetUsers.AsParallel().Where(s => s.is_admin == true && s.UserName == userName)).Count() == 1;
 
+                return isAdmin;
+            
+        }
+        
 
 
         public async static Task<int> CreateWriter(String Name, String Surname)

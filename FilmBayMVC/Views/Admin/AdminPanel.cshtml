@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Manage Account";
+}
+@model List<FilmBayMVC.Models.MovieSearchReturnObjectViewModel>
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+<style>
+.body{
+    position:absolute;
+    width:950px;
+    left:50%;
+    transform:translateX(-475px);
+    background-color:blue;
+}
+.input-group{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+
+</style>
+<div class="body" id="div-body" onload="('.div-body').center()">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Input film title</span>
+            <input name="searchInput" id="searchInput" type="text" class="form-control" placeholder="FilmTitle" aria-describedby="basic-addon1">
+            <button class="buttonFilmSearch"> OK </button>
+        </div>
+    
+</div>
+<div style="height:1000px" class="partialView">
+    @{Html.RenderPartial("_SearchResultPartial", Model);}
+</div>
+<script>
+    $('.buttonFilmSearch').on('click', function () {
+        alert("cycki");
+        //var categoryId = $("#ddlCategory").val();
+        // $("#dv_SearchResultPartial").load(@(Url.Action("SearchFilmResult", "Admin", null, Request.Url.Scheme)));
+            $.ajax({
+            url: '@Url.Action("SearchFilmResult", "Admin")',
+            type: 'GET',
+            //dataType: 'json',
+            // we set cache: false because GET requests are often cached by browsers
+            // IE is particularly aggressive in that respect
+            cache: false,
+            data: { filmName: $("#searchInput").val() },
+             success: function () {
+                 alert("success");
+             }
+        });
+    });
+</script>

@@ -1,0 +1,29 @@
+﻿@model List<FilmBayMVC.Models.MovieSearchReturnObjectViewModel>
+
+<table>
+    <tr>
+        <th> Title</th>
+    </tr>
+
+    @for (int i = 0; i < 10; i++)
+    {
+        <tr>
+            <td><label style="background-color:red">test</label></td>
+        </tr>
+        @*@Html.TextBoxFor(modelItem => Model[i].orginalTitle)*@
+    
+    }
+
+    @if (Model != null)
+    {
+        for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>
+                    <label style="background-color:red">test</label>
+                    @Html.TextBoxFor(modelItem => Model[i].orginalTitle)
+                </td>
+            </tr>
+        }
+    }
+</table>
