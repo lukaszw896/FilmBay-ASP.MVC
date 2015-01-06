@@ -52,3 +52,4 @@ C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\bin\Microsoft.Owin.Se
 C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\obj\Debug\FilmBayMVC.dll
 C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\obj\Debug\FilmBayMVC.pdb
+C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\obj\Debug\FilmBayMVC.csprojResolveAssemblyReference.cache
