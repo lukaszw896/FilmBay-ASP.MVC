@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="Model.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="actor_film_table">
+      <EntityTypeMapping TypeName="Model.actor_film_table">
+        <MappingFragment StoreEntitySet="actor_film_table">
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="id_actor" ColumnName="id_actor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="actor_table">
+      <EntityTypeMapping TypeName="Model.actor_table">
+        <MappingFragment StoreEntitySet="actor_table">
+          <ScalarProperty Name="id_actor" ColumnName="id_actor" />
+          <ScalarProperty Name="actor_name" ColumnName="actor_name" />
+          <ScalarProperty Name="actor_surname" ColumnName="actor_surname" />
+          <ScalarProperty Name="actor_photo_url" ColumnName="actor_photo_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="Model.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="Model.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="Model.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="Model.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comment_table">
+      <EntityTypeMapping TypeName="Model.comment_table">
+        <MappingFragment StoreEntitySet="comment_table">
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="film_table">
+      <EntityTypeMapping TypeName="Model.film_table">
+        <MappingFragment StoreEntitySet="film_table">
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="title_orginal" ColumnName="title_orginal" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_surname" ColumnName="director_surname" />
+          <ScalarProperty Name="age_restriction" ColumnName="age_restriction" />
+          <ScalarProperty Name="publisher" ColumnName="publisher" />
+          <ScalarProperty Name="storyline" ColumnName="storyline" />
+          <ScalarProperty Name="orginal_language" ColumnName="orginal_language" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="nuber_of_votes" ColumnName="nuber_of_votes" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="film_price" ColumnName="film_price" />
+          <ScalarProperty Name="film_studio" ColumnName="film_studio" />
+          <ScalarProperty Name="poster_url" ColumnName="poster_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genere_table">
+      <EntityTypeMapping TypeName="Model.genere_table">
+        <MappingFragment StoreEntitySet="genere_table">
+          <ScalarProperty Name="id_genere" ColumnName="id_genere" />
+          <ScalarProperty Name="genere_name" ColumnName="genere_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="music_creator_table">
+      <EntityTypeMapping TypeName="Model.music_creator_table">
+        <MappingFragment StoreEntitySet="music_creator_table">
+          <ScalarProperty Name="id_music_creator" ColumnName="id_music_creator" />
+          <ScalarProperty Name="music_creator_name" ColumnName="music_creator_name" />
+          <ScalarProperty Name="music_creator_surname" ColumnName="music_creator_surname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="other_language_table">
+      <EntityTypeMapping TypeName="Model.other_language_table">
+        <MappingFragment StoreEntitySet="other_language_table">
+          <ScalarProperty Name="id_other_language" ColumnName="id_other_language" />
+          <ScalarProperty Name="other_language_name" ColumnName="other_language_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="photos_table">
+      <EntityTypeMapping TypeName="Model.photos_table">
+        <MappingFragment StoreEntitySet="photos_table">
+          <ScalarProperty Name="id_photo" ColumnName="id_photo" />
+          <ScalarProperty Name="photo_url" ColumnName="photo_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="producer_table">
+      <EntityTypeMapping TypeName="Model.producer_table">
+        <MappingFragment StoreEntitySet="producer_table">
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="producer_name" ColumnName="producer_name" />
+          <ScalarProperty Name="producer_surname" ColumnName="producer_surname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vote_table">
+      <EntityTypeMapping TypeName="Model.vote_table">
+        <MappingFragment StoreEntitySet="vote_table">
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="vote" ColumnName="vote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="writers_table">
+      <EntityTypeMapping TypeName="Model.writers_table">
+        <MappingFragment StoreEntitySet="writers_table">
+          <ScalarProperty Name="id_writer" ColumnName="id_writer" />
+          <ScalarProperty Name="writer_name" ColumnName="writer_name" />
+          <ScalarProperty Name="writer_surname" ColumnName="writer_surname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="admin_table">
+      <EntityTypeMapping TypeName="Model.admin_table">
+        <MappingFragment StoreEntitySet="admin_table">
+          <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_table">
+      <EntityTypeMapping TypeName="Model.user_table">
+        <MappingFragment StoreEntitySet="user_table">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+          <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="bought_films_table" TypeName="Model.bought_films_table" StoreEntitySet="bought_films_table">
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="id" />
+      </EndProperty>
+      <EndProperty Name="film_table">
+        <ScalarProperty Name="id_film" ColumnName="id_film" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="favourites_films_table" TypeName="Model.favourites_films_table" StoreEntitySet="favourites_films_table">
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="id" />
+      </EndProperty>
+      <EndProperty Name="film_table">
+        <ScalarProperty Name="id_film" ColumnName="id_film" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="film_genere_table" TypeName="Model.film_genere_table" StoreEntitySet="film_genere_table">
+      <EndProperty Name="film_table">
+        <ScalarProperty Name="id_film" ColumnName="id_film" />
+      </EndProperty>
+      <EndProperty Name="genere_table">
+        <ScalarProperty Name="id_genere" ColumnName="id_genere" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="film_music_creators" TypeName="Model.film_music_creators" StoreEntitySet="film_music_creators">
+      <EndProperty Name="film_table">
+        <ScalarProperty Name="id_film" ColumnName="id_film" />
+      </EndProperty>
+      <EndProperty Name="music_creator_table">
+        <ScalarProperty Name="id_music_creator" ColumnName="id_music_creator" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="film_other_language_table" TypeName="Model.film_other_language_table" StoreEntitySet="film_other_language_table">
+      <EndProperty Name="film_table">
+        <ScalarProperty Name="id_film" ColumnName="id_film" />
+      </EndProperty>
+      <EndProperty Name="other_language_table">
+        <ScalarProperty Name="id_other_language" ColumnName="id_other_language" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="film_photos_table" TypeName="Model.film_photos_table" StoreEntitySet="film_photos_table">
+      <EndProperty Name="film_table">
+        <ScalarProperty Name="id_film" ColumnName="id_film" />
+      </EndProperty>
+      <EndProperty Name="photos_table">
+        <ScalarProperty Name="id_photo" ColumnName="id_photo" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="film_writers_table" TypeName="Model.film_writers_table" StoreEntitySet="film_writers_table">
+      <EndProperty Name="film_table">
+        <ScalarProperty Name="id_film" ColumnName="id_film" />
+      </EndProperty>
+      <EndProperty Name="writers_table">
+        <ScalarProperty Name="id_writer" ColumnName="id_writer" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
