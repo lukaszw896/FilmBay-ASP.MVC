@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Globalization;
+using FilmBayMVC;
+using FilmBayMVC.Models;
+
 namespace FilmBayMVC
 {
     public static class TMDbApi
@@ -84,10 +86,10 @@ namespace FilmBayMVC
             languages= TMDbHelper.FindString(@"""spoken_languages"":[", @"}]", responseContent.ToString());
             duration = TMDbHelper.FindSingleString(@"""runtime"":", @",""", responseContent.ToString());
             ageRestriction = TMDbHelper.FindSingleString(@"""adult"":", @",""", responseContent.ToString());
-            if (studio == null) { studio = ""; }
+            
            return new FoundMovieDetails(genres,storyline,int.Parse(duration),languages,ageRestriction,studio);
         }
-        public static List<Actor> GetActors(int id)
+        public static List<actor_table> GetActors(int id)
         {
             var request = System.Net.WebRequest.Create("http://api.themoviedb.org/3/movie/" + id +"/credits?api_key=7b5e30851a9285340e78c201c4e4ab99") as System.Net.HttpWebRequest;
             request.KeepAlive = true;
@@ -104,16 +106,16 @@ namespace FilmBayMVC
             }
             /*character string consists of name and profile pic (which might be null)*/
             List<string> characterStringList = TMDbHelper.FindString(@"""character"":""", @"}", responseContent.ToString());
-            List<Actor> actors = new List<Actor>();
+            List<actor_table> actors = new List<actor_table>();
             foreach(string characterString in characterStringList)
             {
-                Actor a = new Actor();
+                actor_table a = new actor_table();
                 String fullname = TMDbHelper.FindSingleString(@"""name"":""", @""",""", characterString);
                 String photoPath = TMDbHelper.FindSingleString(@"profile_path"":""", @"""", characterString);
                 if(photoPath!="null")
                 {
                     if(photoPath!=null)
-                    a.photoPath="http://image.tmdb.org/t/p/w500" + photoPath;
+                    a.actor_photo_url="http://image.tmdb.org/t/p/w500" + photoPath;
                     
                     
                 }
@@ -122,8 +124,8 @@ namespace FilmBayMVC
                 string surname = "";
                 if(split.Count()>=2)
                  surname = split[1];
-                a.Name = name;
-                a.Surname = surname;
+                a.actor_name = name;
+                a.actor_surname= surname;
                 actors.Add(a);
             }
             return actors;
@@ -148,13 +150,12 @@ namespace FilmBayMVC
             List<string> writers = new List<string>();
             List<string> producers = new List<string>();
             List<string> composers = new List<string>();
-            string director = "";
+
             writers = TMDbHelper.FindString(@"""Screenplay"",""name"":""", @""",""", responseContent.ToString());
             producers = TMDbHelper.FindString(@"""Producer"",""name"":""", @""",""", responseContent.ToString());
             composers = TMDbHelper.FindString(@"""Original Music Composer"",""name"":""", @""",""", responseContent.ToString());
-            director = TMDbHelper.FindSingleString(@"""Director"",""name"":""", @""",""", responseContent.ToString());
-            if (director == null) director = "";
-            return new CastInformation(writers, producers, composers,director);
+
+            return new CastInformation(writers, producers, composers);
 
         }
 
@@ -173,23 +174,15 @@ namespace FilmBayMVC
                     responseContent = reader.ReadToEnd();
                 }
             }
-            
             List<string> picturesPaths = new List<string>();
-            List<string> picturesRatio = new List<string>();
-            List<string> picturesPathsFinal = new List<string>();
             picturesPaths = TMDbHelper.FindString(@"""file_path"":""", @""",""", responseContent.ToString());
-            picturesRatio = TMDbHelper.FindString(@"""aspect_ratio"":", @",""", responseContent.ToString());
+          
             for (int i = 0; i < picturesPaths.Count;i++)
             {
-                string tmpString = picturesRatio[i].ToString();
-                Double tmp = Double.Parse(tmpString, CultureInfo.InvariantCulture);
-                if (tmp > 1.2)
-                {
-                    picturesPathsFinal.Add("http://image.tmdb.org/t/p/w500" + picturesPaths[i]);
-                }
+                picturesPaths[i] = "http://image.tmdb.org/t/p/w500" + picturesPaths[i];
                 i++;
             }
-            return picturesPathsFinal;
+            return picturesPaths;
             
         }
 

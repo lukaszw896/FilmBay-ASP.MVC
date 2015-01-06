@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-
+using FilmBayMVC.Models;
 namespace FilmBayMVC
 {
     public static class DBAccess
@@ -23,7 +23,7 @@ namespace FilmBayMVC
                 MyLINQDataContext con = new MyLINQDataContext();
                 film_table dane = new film_table();
                 bool nameinDB = (con.film_tables.AsParallel().Where(s => s.title == title && s.release_date == releasedate).Count()) > 0;
-                if (nameinDB == false)
+             //   if (nameinDB == false)
                 {
 
                     if (studio.Trim() != "")
@@ -58,18 +58,19 @@ namespace FilmBayMVC
                     return dane.id_film;
 
                 }
+                /*
                 else
                 {
-                    /* dane= con.film_tables.AsParallel().Where(s => s.title == title && s.release_date==releasedate).FirstOrDefault();
+                    dane= con.film_tables.AsParallel().Where(s => s.title == title && s.release_date==releasedate).FirstOrDefault();
                      con.Dispose();
-                     return dane.id_film;*/
-                    con.Dispose();
+                     return dane.id_film;
                     //MessageBox.Show("A film you are trying to add already exist in the database. Our system doesn't allow to alter or modify already existing films (Avaliable in next version)");
 
 
-                    return -1;
-
-                }
+              //      return -1;
+                
+                }&/
+                */
             });
 
         }
