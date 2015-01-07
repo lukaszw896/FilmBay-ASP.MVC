@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using FilmBayMVC.Connectivity;
 namespace FilmBayMVC.Controllers
 {
     public class AdminController : Controller
@@ -68,6 +68,24 @@ namespace FilmBayMVC.Controllers
             }
             else
                 return PartialView("_SearchResultPartial"); 
+        }
+
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public async Task<JavaScriptResult> AddFilmToDatabase(String id,String title,String orginalTitle,String popularity,String releaseDate,String posterPath)
+        {
+            MovieSearchReturnObject sample = new MovieSearchReturnObject();
+            sample.id = int.Parse(id); ;
+            sample.orginalTitle = orginalTitle;
+            sample.popularity = float.Parse(popularity);
+            sample.posterPath = posterPath;
+            sample.releaseDate = releaseDate;
+            sample.title = title;
+
+            await AddFilmInfo.FilmCreation(sample);
+            
+
+            return JavaScript(@"informationPopup(""Dodawanie zakończone (jescze nie sprawdzam czy zakończono pomyślnie :(( ))"")");
         }
     }
 }

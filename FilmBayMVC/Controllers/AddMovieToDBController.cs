@@ -17,7 +17,7 @@ namespace FilmBayMVC.Controllers
             return View();
         }
 
-        public async Task<ActionResult> AddMovietoDB()
+        public static  async void AddMovietoDB()
     {
        // int Foundmovieid = Movie.id;
         MovieSearchReturnObject sample = new MovieSearchReturnObject();
@@ -29,8 +29,6 @@ namespace FilmBayMVC.Controllers
         sample.title = "Wladca pierdzieli";
 
         await AddFilmInfo.FilmCreation(sample);
-
-                return View(sample);
         }
 
     
