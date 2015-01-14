@@ -87,5 +87,15 @@ namespace FilmBayMVC.Controllers
 
             return JavaScript(@"informationPopup(""Dodawanie zakończone (jescze nie sprawdzam czy zakończono pomyślnie :(( ))"")");
         }
+        public async Task <ActionResult> EditFilm()
+        {
+            int id;
+            id=1;
+            FilmBayMVC.Models.film_table film = new FilmBayMVC.Models.film_table();
+            film = await DBAccess.GetFilmById(id);
+
+            return View(film);
+        }
     }
+
 }

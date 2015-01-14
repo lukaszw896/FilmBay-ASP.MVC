@@ -987,6 +987,29 @@ namespace FilmBayMVC
                 return FilmTables;
             });
         }
+        public async static Task<List<film_table>> GetAllFilms()
+        {
+            return await Task.Run(() =>
+            {
+                MyLINQDataContext con = new MyLINQDataContext();
+                List<film_table> FilmTables = new List<film_table>();
+                FilmTables = (from f in con.film_tables select f).ToList();
+                con.Dispose();
+                return FilmTables;
+            });
+        }
+        public async static Task<film_table> GetFilmById(int id)
+        {
+            return await Task.Run(() =>
+            {
+                MyLINQDataContext con = new MyLINQDataContext();
+                film_table FilmTable = new film_table();
+                FilmTable = (from f in con.film_tables where f.id_film == id select f).FirstOrDefault();
+                con.Dispose();
+                return FilmTable;
+            });
+        }
+
 
         public async static Task<List<film_table>> SearchedByTitle(string searchedtitle)
         {

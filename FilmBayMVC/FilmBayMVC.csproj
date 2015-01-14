@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AddMovieToDBController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserPageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,7 +180,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MovieSearchReturnObject.cs" />
     <Compile Include="Models\TMDbHelperModel.cs" />
-    <Compile Include="MyLINQ.designer.cs">
+    <Compile Include="Models\MyLINQ.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyLINQ.dbml</DependentUpon>
@@ -200,7 +201,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="MyLINQ.dbml">
+    <Content Include="Models\MyLINQ.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>MyLINQ.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -254,7 +255,8 @@
     <Content Include="Views\Admin\_SearchResultPartial.cshtml" />
     <Content Include="Views\AddMovieToDB\AddMovietoDB.cshtml" />
     <Content Include="Views\AddMovieToDB\Index.cshtml" />
-    <Content Include="Views\Shared\_userMovieSearchPartial.cshtml" />
+    <Content Include="Views\UserPage\UserInfo.cshtml" />
+    <Content Include="Views\Admin\EditFilm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -268,7 +270,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MyLINQ.dbml.layout">
+    <None Include="Models\MyLINQ.dbml.layout">
       <DependentUpon>MyLINQ.dbml</DependentUpon>
     </None>
   </ItemGroup>
