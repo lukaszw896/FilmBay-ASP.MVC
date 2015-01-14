@@ -12,14 +12,14 @@
                 <td>
                     <label style="background-color:red">test</label>
                     @{
-                    String tmpOrginalTitle = "orginalTitle" + i;
-                    <label id=@tmpOrginalTitle>@Model[i].orginalTitle</label>
-                    String tmpPosterPath = "posterPath" + i;
-                    <img id=@tmpPosterPath src="@Model[i].posterPath" style="height:200px"/>
+            String tmpOrginalTitle = "orginalTitle" + i;
+            <label id=@tmpOrginalTitle>@Model[i].orginalTitle</label>
+            String tmpPosterPath = "posterPath" + i;
+            <img id=@tmpPosterPath src="@Model[i].posterPath" style="height:200px" />
                     }
                     @{String tmpId = "id" + i;
                     <label id=@tmpId style="visibility:hidden">@Model[i].id</label>
-                    }   
+                    }
                 </td>
                 <td>
                     <div>
@@ -27,17 +27,17 @@
                             <tr>
                                 <td>
                                     @{
-                                     String idReleaseDate = "releaseDate" + i;
+            String idReleaseDate = "releaseDate" + i;
 
-                                    <label id="@idReleaseDate">@Model[i].releaseDate</label>
+            <label id="@idReleaseDate">@Model[i].releaseDate</label>
                                     }
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     @{
-                    string idTitle = "title" + i;
-                    <label id=@idTitle>@Model[i].title</label>
+            string idTitle = "title" + i;
+            <label id=@idTitle>@Model[i].title</label>
                                     }
                                 </td>
                             </tr>
@@ -45,11 +45,11 @@
 
                     </div>
                     @{
-                        string idPopularity = "popularity"+i;
-                    <label id=@idPopularity style="visibility:hidden">@Model[i].popularity</label>
+            string idPopularity = "popularity" + i;
+            <label id=@idPopularity style="visibility:hidden">@Model[i].popularity</label>
                     }
                     @{
-                         string idButton = "button" + i;
+            string idButton = "button" + i;
                     }
                     <button id=@idButton onclick="partialViewButtonClick(this.id)">Add to database</button>
                 </td>
@@ -57,3 +57,6 @@
         }
     }
 </table>
+
+
+

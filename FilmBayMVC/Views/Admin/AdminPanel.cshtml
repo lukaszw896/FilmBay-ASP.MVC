@@ -29,8 +29,8 @@
 <div class="body" id="div-body" onload="('.div-body').center()">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Input film title</span>
-            <input name="FilmName" id="FilmName" type="text" class="form-control" aria-describedby="basic-addon1">
-            <button class="buttonFilmSearch"> OK </button>
+            <input name="FilmName" id="FilmName" type="text"  >
+            <button class="buttonFilmSearch" onclick="getInputValue(FilmName.value)"> OK </button>
         </div>
     
 </div>
@@ -43,10 +43,19 @@
 </div>
 
 <script>
-    $('.buttonFilmSearch').on('click', function () {
-        var filmName = $('#FilmName').val();
+    @*$('.buttonFilmSearch').on('click', function () {
+        var filmName = $('#FilmName').attr('value');
+        //var filmName = "";
+        //filmName = document.getElementById('FilmName').value;
         $('#partialViewDiv').load('@Url.Action("SearchFilmResult", "Admin")'+'?filmName='+filmName);
-    });
+    });*@
+
+    function getInputValue(value) {
+        var filmName = value.replace(/\s/g,"+")
+        alert(filmName);
+        $('#partialViewDiv').load('@Url.Action("SearchFilmResult", "Admin")' + '?filmName=' + filmName);
+    }
+
 
     function partialViewButtonClick(e) {
         // var id = $(e.target).id;
@@ -69,7 +78,6 @@
             var posterPath = document.getElementById("posterPath" + id).src;
         
             alert(id + "," + title + "," + orginalTitle + "," + popularity + "," + releaseDate + "," + posterPath);
-
 
             $.ajax({
                 url: '@Url.Action("AddFilmToDatabase", "Admin")' + '?id=' + filmId+'&title='+title+'&orginalTitle='+orginalTitle+'&popularity='+popularity+'&releaseDate='+releaseDate+'&posterPath='+posterPath,
