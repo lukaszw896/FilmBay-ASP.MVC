@@ -254,6 +254,7 @@
     <Content Include="Views\Admin\_SearchResultPartial.cshtml" />
     <Content Include="Views\AddMovieToDB\AddMovietoDB.cshtml" />
     <Content Include="Views\AddMovieToDB\Index.cshtml" />
+    <Content Include="Views\Shared\_userMovieSearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
