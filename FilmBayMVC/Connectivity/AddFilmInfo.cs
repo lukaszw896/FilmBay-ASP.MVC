@@ -20,6 +20,8 @@ namespace FilmBayMVC.Connectivity
             List<writers_table> writers = new List<writers_table>();
             List<music_creator_table> composers = new List<music_creator_table>();
             List<producer_table> producers = new List<producer_table>();
+            List<genere_table> genres = new List<genere_table>();
+
 
             string Day = Movie.releaseDate.Substring(9, 2);
             string Month = Movie.releaseDate.Substring(6, 2);
@@ -31,6 +33,8 @@ namespace FilmBayMVC.Connectivity
             TimeSpan duration = TimeSpan.Parse(Duration_H + ":" + Duration_M + ":" + Duration_S);
           
             DateTime releasedate = System.DateTime.Parse(Month + "/" + Day + "/" + Year);
+
+            
 
             int filmid;
             filmid = await DBAccess.CreateFilm("Gorge", "lukas", 10, details.studio, details.storyline, Movie.title, Movie.orginalTitle, "English", duration, Movie.posterPath
@@ -47,6 +51,23 @@ namespace FilmBayMVC.Connectivity
                 writers_table tmpWriter = new writers_table() { writer_name = name, writer_surname = surname };
                 writers.Add(tmpWriter);
             }
+            /*
+            foreach (string genre in details.genres)
+            {
+             
+
+                int genreid = await DBAccess.CreateGenre(genre);
+                film_genere_table g = DBAccess.CreateGenreFilmTable(filmid, genreid);
+
+            }*/
+            /*
+            foreach (string language in details.genres)
+            {
+
+                int langid = await DBAccess.CreateLanguage(language);
+                film_other_language_table l = DBAccess.CreateFilmLanguageTable(filmid, langid);
+
+            }*/
             foreach (string composer in cast.composers)
             {
                 String[] split = composer.Split(' ');

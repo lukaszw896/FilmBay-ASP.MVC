@@ -621,6 +621,27 @@ namespace FilmBayMVC
             });
 
         }
+        public async static Task<List<string>> GetGenres(int filmid)
+        {
+            return await Task.Run(() =>
+            {
+                List<genere_table> Genres = new List<genere_table>();
+                MyLINQDataContext con = new MyLINQDataContext();
+               Genres = (from a in con.genere_tables
+                           join at in con.film_genere_tables on a.id_genere equals at.id_genere
+                           join f in con.film_tables on at.id_film equals f.id_film
+                           where f.id_film == filmid
+                           select a).ToList();
+                con.Dispose();
+                List<string> gens = new List<string>();
+                foreach(genere_table g in Genres)
+                {
+                    gens.Add(g.ToString());
+                }
+                return gens;
+            });
+
+        }
         public async static Task<List<photos_table>> GetPhotos(int filmid)
         {
             return await Task.Run(() =>

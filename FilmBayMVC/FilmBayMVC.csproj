@@ -176,6 +176,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CastInformation.cs" />
+    <Compile Include="Models\FilmToShow.cs" />
     <Compile Include="Models\FoundMovieDetails.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MovieSearchReturnObject.cs" />

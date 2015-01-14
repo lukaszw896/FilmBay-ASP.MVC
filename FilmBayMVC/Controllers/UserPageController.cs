@@ -23,6 +23,22 @@ namespace FilmBayMVC.Controllers
             List<FilmBayMVC.Models.film_table> myfilms = new  List<FilmBayMVC.Models.film_table>();
            myfilms = await DBAccess.GetAllFilms();
 
+
+
+           List<FilmToShow> films = new List<FilmToShow>();
+            foreach(film_table f in myfilms)
+            {
+                int filmid = f.id_film;
+                List<string> genres = await DBAccess.GetGenres(filmid);
+                FilmToShow x = new FilmToShow();
+                x.Film = f;
+                x.Genres = genres;
+                films.Add(x);
+            }
+        
+
+            
+
             return View(myfilms);
         }
      
