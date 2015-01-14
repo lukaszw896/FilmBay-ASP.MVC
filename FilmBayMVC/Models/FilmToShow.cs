@@ -5,9 +5,13 @@ using System.Web;
 
 namespace FilmBayMVC.Models
 {
-    public class FilmToShow
+    public class  FilmToShow 
     {
-        public FilmBayMVC.Models.film_table Film;
-        public List<string> Genres  {get; set;}
+        public string Title { get; set; }
+        public string ReleaseDate { get; set; }
+          public List<string> Genres  {get; set;}
+        public string poster { get; set; }
+        public string rating { get; set; }
+        public string Director { get; set; }
     }
 }

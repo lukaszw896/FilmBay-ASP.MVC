@@ -1,0 +1,27 @@
+﻿@model FilmBayMVC.Models.FilmPageModel
+@{
+    ViewBag.Title = "FilmPage";
+}
+
+<h2>FilmPage</h2>
+
+<div class="row">
+    <div class="col-sm-4">
+        <img src="@Model.poster" class="img-responsive" style="height:160px" />
+    </div>
+    <div class="col-sm-5">
+        @Html.ActionLink(@Model.Title, "FilmPage")   (@Model.ReleaseDate.ToString().Substring(0,4)
+        <br />
+        @Model.duration<br />
+        @Model.storyline<br />
+        @Model.Director<br />
+        @for(int i=0; i<Model.Writers.Count;i++)
+        {
+            Model.Writers[i].ToString();
+        }
+        @Model.ReleaseDate (WorldWide)
+    </div>
+    <div class="col-sm-5">
+
+    </div>
+</div>

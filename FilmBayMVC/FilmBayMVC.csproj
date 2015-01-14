@@ -164,11 +164,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Connectivity\AddFilmInfo.cs" />
     <Compile Include="Connectivity\DBAccess.cs" />
+    <Compile Include="Connectivity\ModelCreator.cs" />
     <Compile Include="Connectivity\TMDbApi.cs" />
     <Compile Include="Connectivity\TMDbHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddMovieToDBController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\FilmPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserPageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -176,6 +178,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CastInformation.cs" />
+    <Compile Include="Models\FilmPageModel.cs" />
     <Compile Include="Models\FilmToShow.cs" />
     <Compile Include="Models\FoundMovieDetails.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -258,6 +261,7 @@
     <Content Include="Views\AddMovieToDB\Index.cshtml" />
     <Content Include="Views\UserPage\UserInfo.cshtml" />
     <Content Include="Views\Admin\EditFilm.cshtml" />
+    <Content Include="Views\FilmPage\FilmPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -275,6 +279,7 @@
       <DependentUpon>MyLINQ.dbml</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -20,9 +20,9 @@ namespace FilmBayMVC.Connectivity
             List<writers_table> writers = new List<writers_table>();
             List<music_creator_table> composers = new List<music_creator_table>();
             List<producer_table> producers = new List<producer_table>();
-            List<genere_table> genres = new List<genere_table>();
+            //List<genere_table> genres = new List<genere_table>();
 
-
+            List<string> genres = details.genres;
             string Day = Movie.releaseDate.Substring(9, 2);
             string Month = Movie.releaseDate.Substring(6, 2);
             string Year = Movie.releaseDate.Substring(1, 4);

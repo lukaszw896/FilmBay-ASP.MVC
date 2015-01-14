@@ -642,6 +642,27 @@ namespace FilmBayMVC
             });
 
         }
+        public async static Task<List<string>> GetLanguages(int filmid)
+        {
+            return await Task.Run(() =>
+            {
+                List<other_language_table> Languages = new List<other_language_table>();
+                MyLINQDataContext con = new MyLINQDataContext();
+                Languages = (from a in con.other_language_tables
+                          join at in con.film_other_language_tables on a.id_other_language equals at.id_other_language
+                          join f in con.film_tables on at.id_film equals f.id_film
+                          where f.id_film == filmid
+                          select a).ToList();
+                con.Dispose();
+                List<string> Langs = new List<string>();
+                foreach (other_language_table L in Languages)
+                {
+                    Langs.Add(L.ToString());
+                }
+                return Langs;
+            });
+
+        }
         public async static Task<List<photos_table>> GetPhotos(int filmid)
         {
             return await Task.Run(() =>

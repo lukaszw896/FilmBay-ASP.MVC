@@ -31,15 +31,17 @@ namespace FilmBayMVC.Controllers
                 int filmid = f.id_film;
                 List<string> genres = await DBAccess.GetGenres(filmid);
                 FilmToShow x = new FilmToShow();
-                x.Film = f;
-                x.Genres = genres;
+                x.Title = f.title;
+                x.ReleaseDate = f.release_date.ToString().Substring(0, 4);
+            //    x.Genres = genres;
+                x.rating = f.rating.ToString();
+                x.poster = f.poster_url;
+                x.Director = f.director_name + " " + f.director_surname;
+
                 films.Add(x);
             }
-        
 
-            
-
-            return View(myfilms);
+            return View(films);
         }
      
 

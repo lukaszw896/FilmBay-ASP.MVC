@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -29,7 +30,7 @@ namespace FilmBayMVC.Controllers
         }
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult SearchFilmResult(String filmName)
+        public async Task<ActionResult> SearchFilmResult(String filmName)
         {
             var list = new List<MovieSearchReturnObjectViewModel>();
             if (filmName != null)
@@ -37,7 +38,19 @@ namespace FilmBayMVC.Controllers
 
 
                 List<MovieSearchReturnObject> tmpList = null;
-                tmpList= DBAccess.SearchedByTitle
+               List< film_table> filmList = new List <film_table>();
+               filmList = await DBAccess.SearchedByTitle(filmName);
+                foreach(film_table f in filmList)
+                {
+                    MovieSearchReturnObject m = new MovieSearchReturnObject();
+                    m.id = f.id_film;
+                    m.title = f.title;
+                    m.orginalTitle = f.title_orginal;
+                    m.posterPath = f.poster_url;
+                    m.releaseDate = f.release_date.ToString();
+                    tmpList.Add(m);
+                }
+            //    tmpList = DBAccess.SearchedByTitle;
                 //tmpList = TMDbApi.movieSearch(filmName);
                 /*
                  * 

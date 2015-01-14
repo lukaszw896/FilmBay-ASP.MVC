@@ -1,4 +1,4 @@
-﻿@model List<FilmBayMVC.Models.film_table>
+﻿@model List<FilmBayMVC.Models.FilmToShow>
 @{
     ViewBag.Title = "UserInfo";
 }
@@ -14,26 +14,28 @@
 <h2>My movies:</h2>
 @using (Html.BeginForm())
 {
-    <div class="container">
+    <div class="form-horizontal">
         @if (Model != null)
         {
             for (int i = 0; i < Model.Count; i++)
             {
+                <div class="row"><br /></div>
                 <div class="row">
-                    <div class="col-sm-3 col-xs-1" >
+                    <div class="col-sm-4 col-xs-2" >
                         <div class="row">
-                       @Model[i].title @Model[i].release_date.ToString().Substring(0, 4)
+                            @Html.ActionLink(@Model[i].Title, "Index")   (@Model[i].ReleaseDate.ToString())
+                           
                         </div>
                         <div class="row">
-                            Rating:  @Model[i].rating /10
+                            <span class="glyphicon glyphicon-star"></span> @Model[i].rating /10
                         </div>
                         <div class="row">
+                          Directed by @Model[i].Director
                         </div>
                     </div>
                     <div class="col-sm-4 col-xs-4">
-                        <img src="@Model[i].poster_url" class="img-responsive" style="height:175px" />
+                        <img src="@Model[i].poster" class="img-responsive" style="height:160px" />
                     </div>
-
                 </div>
             }
         }
