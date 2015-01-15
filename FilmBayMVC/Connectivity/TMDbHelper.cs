@@ -21,7 +21,7 @@ namespace FilmBayMVC
 
             foreach (Match m in Regex.Matches(input, pattern))
             {
-                results.Add(m.Groups[1].Value);
+                results.Add(m.Groups[1].Value); 
                 Console.WriteLine(m.Groups[1].Value);
             }
             return results;

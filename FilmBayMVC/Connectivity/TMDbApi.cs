@@ -6,22 +6,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FilmBayMVC;
 using FilmBayMVC.Models;
-using System.Web.Script.Serialization;
+
 namespace FilmBayMVC
 {
-
-    public class Genre
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-    }
-
-    public class SpokenLanguage
-    {
-        public string iso_639_1 { get; set; }
-        public string name { get; set; }
-    }
-
     public static class TMDbApi
     {
         //method for searching movies by title in TMDb database
@@ -89,11 +76,7 @@ namespace FilmBayMVC
             List<string> languages;
             string duration;
             string ageRestriction;
-                
-
-
-
-
+            
 
             // string title = TMDbHelper.FindSingleString(@"""title"":""", @""",""", responseContent.ToString());
             //"genres":[{"id":28,"name":"Action"}]
@@ -101,7 +84,10 @@ namespace FilmBayMVC
             genres = TMDbHelper.FindStringWithOneUknownWord(@"{""id"":", @",""name"":""", @"""}", genere);   
             storyline = TMDbHelper.FindSingleString(@"""overview"":""", @""",""", responseContent.ToString());
             studio = TMDbHelper.FindSingleString(@"""production_companies"":[{""name"":""", @""",""", responseContent.ToString());
-          languages= TMDbHelper.FindString(@"""spoken_languages"":[", @"}]", responseContent.ToString());
+            string language;
+            language= TMDbHelper.FindSingleString(@"""spoken_languages"":[", @"]", responseContent.ToString());
+            languages = TMDbHelper.FindString(@"name"":""", @"""}", language);
+
             duration = TMDbHelper.FindSingleString(@"""runtime"":", @",""", responseContent.ToString());
             ageRestriction = TMDbHelper.FindSingleString(@"""adult"":", @",""", responseContent.ToString());
             
