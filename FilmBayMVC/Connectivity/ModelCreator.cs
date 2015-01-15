@@ -26,11 +26,12 @@ namespace FilmBayMVC.Connectivity
             film.Title = f.title;
             film.rating = f.rating.ToString();
             film.duration = f.duration.ToString();
-
+            film.Writers = new  List<string>();
             foreach (writers_table w in writers)
             {
                 film.Writers.Add(w.ToString());
             }
+            film.Producers = new List<string>();
             foreach (producer_table p in producers)
             {
                 film.Producers.Add(p.ToString());
