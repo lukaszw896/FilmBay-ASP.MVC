@@ -1,24 +1,43 @@
-﻿@model List<FilmBayMVC.Models.MovieSearchReturnObjectViewModel>
+﻿@model FilmBayMVC.ViewModels.ModelsKeeper
 
-<table>
-    <tr>
-        <th> Title</th>
-    </tr>
-    @if (Model != null)
+    @if (Model != null && Model.movieSearchReturnObjectViewModels != null)
     {
-        for (int i = 0; i < Model.Count(); i++)
+        for (int i = 0; i < Model.movieSearchReturnObjectViewModels.Count(); i++)
         {
-            <tr>
+            String tmpId = "id" + i;
+            String tmpIdWithHash = "#" + tmpId;
+            // <label id=@tmpId style="visibility:hidden">@Model.movieSearchReturnObjectViewModels[i].id</label>
+
+            <div id="@Model.movieSearchReturnObjectViewModels[i].id" class="row" style="margin:5px;" onclick="onFilmDiv_Click(this.id)">
+                <div class="col-sm-4">
+                    @{ String tmpPosterPath = "posterPath" + i;
+                    <img id=@tmpPosterPath src="@Model.movieSearchReturnObjectViewModels[i].posterPath" style="height:200px" />
+                    }
+                </div>
+                <div class="col-sm-8">
+                    <div style="font-size:18px; text-align:center">
+                        @{ String tmpOrginalTitle = "orginalTitle" + i;
+                         String title = Model.movieSearchReturnObjectViewModels[i].title + " (" + Model.movieSearchReturnObjectViewModels[i].releaseDate.Substring(0, 4) + ")";
+                        <label id=@tmpOrginalTitle>@title</label>}
+                    </div>
+                    <div style="font-size:12px">
+                        @{ String idReleaseDate = "releaseDate" + i;
+                        <label id="@idReleaseDate">@Model.movieSearchReturnObjectViewModels[i].releaseDate</label>}
+                    </div>
+                </div>
+
+            </div>
+            @*<tr>
                 <td>
                     <label style="background-color:red">test</label>
                     @{
             String tmpOrginalTitle = "orginalTitle" + i;
-            <label id=@tmpOrginalTitle>@Model[i].orginalTitle</label>
+            <label id=@tmpOrginalTitle>@Model.movieSearchReturnObjectViewModels[i].orginalTitle</label>
             String tmpPosterPath = "posterPath" + i;
-            <img id=@tmpPosterPath src="@Model[i].posterPath" style="height:200px" />
+            <img id=@tmpPosterPath src="@Model.movieSearchReturnObjectViewModels[i].posterPath" style="height:200px" />
                     }
                     @{String tmpId = "id" + i;
-                    <label id=@tmpId style="visibility:hidden">@Model[i].id</label>
+                    <label id=@tmpId style="visibility:hidden">@Model.movieSearchReturnObjectViewModels[i].id</label>
                     }
                 </td>
                 <td>
@@ -29,7 +48,7 @@
                                     @{
             String idReleaseDate = "releaseDate" + i;
 
-            <label id="@idReleaseDate">@Model[i].releaseDate</label>
+            <label id="@idReleaseDate">@Model.movieSearchReturnObjectViewModels[i].releaseDate</label>
                                     }
                                 </td>
                             </tr>
@@ -37,7 +56,7 @@
                                 <td>
                                     @{
             string idTitle = "title" + i;
-            <label id=@idTitle>@Model[i].title</label>
+            <label id=@idTitle>@Model.movieSearchReturnObjectViewModels[i].title</label>
                                     }
                                 </td>
                             </tr>
@@ -46,17 +65,12 @@
                     </div>
                     @{
             string idPopularity = "popularity" + i;
-            <label id=@idPopularity style="visibility:hidden">@Model[i].popularity</label>
+            <label id=@idPopularity style="visibility:hidden">@Model.movieSearchReturnObjectViewModels[i].popularity</label>
                     }
-                    @{
-            string idButton = "button" + i;
-                    }
-                    <button id=@idButton onclick="partialViewButtonClick(this.id)">Add to database</button>
                 </td>
-            </tr>
+            </tr>*@
         }
     }
-</table>
 
 
 

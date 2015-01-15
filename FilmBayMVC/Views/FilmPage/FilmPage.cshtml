@@ -1,4 +1,4 @@
-﻿@model FilmBayMVC.Models.FilmPageModel
+﻿@model FilmBayMVC.ViewModels.ModelsKeeper
 @{
     ViewBag.Title = "FilmPage";
 }
@@ -7,19 +7,19 @@
 
 <div class="row">
     <div class="col-sm-4">
-        <img src="@Model.poster" class="img-responsive" style="height:160px" />
+        <img src="@Model.filmPageModel.poster" class="img-responsive" style="height:160px" />
     </div>
     <div class="col-sm-5">
-        @Html.ActionLink(@Model.Title, "FilmPage")   (@Model.ReleaseDate.ToString().Substring(0,4)
+        @Html.ActionLink(@Model.filmPageModel.Title, "FilmPage")   (@Model.filmPageModel.ReleaseDate.ToString().Substring(0, 4)
         <br />
-        @Model.duration<br />
-        @Model.storyline<br />
-        @Model.Director<br />
-        @for(int i=0; i<Model.Writers.Count;i++)
+        @Model.filmPageModel.duration<br />
+        @Model.filmPageModel.storyline<br />
+        @Model.filmPageModel.Director<br />
+        @for (int i = 0; i < Model.filmPageModel.Writers.Count; i++)
         {
-            Model.Writers[i].ToString();
+            Model.filmPageModel.Writers[i].ToString();
         }
-        @Model.ReleaseDate (WorldWide)
+        @Model.filmPageModel.ReleaseDate (WorldWide)
     </div>
     <div class="col-sm-5">
 

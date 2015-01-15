@@ -1,4 +1,5 @@
 ﻿using FilmBayMVC.Models;
+using FilmBayMVC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace FilmBayMVC.Controllers
             {
 
 
-                List<MovieSearchReturnObject> tmpList = null;
+                List<MovieSearchReturnObject> tmpList = new List<MovieSearchReturnObject>();
                List< film_table> filmList = new List <film_table>();
                filmList = await DBAccess.SearchedByTitle(filmName);
                 foreach(film_table f in filmList)
@@ -84,10 +85,12 @@ namespace FilmBayMVC.Controllers
                     list.Add(tmpModel);
                 }
 
-                return PartialView("_SearchResultPartial", list);
+                ModelsKeeper modelsKeeper = new ModelsKeeper() { movieSearchReturnObjectViewModels = list };
+                
+                return PartialView("_userMovieSearchPartial", modelsKeeper);
             }
             else
-                return PartialView("_SearchResultPartial");
+                return PartialView("_userMovieSearchPartial");
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FilmBayMVC.Connectivity;
+using FilmBayMVC.ViewModels;
 namespace FilmBayMVC.Controllers
 {
     public class AdminController : Controller
@@ -63,8 +64,9 @@ namespace FilmBayMVC.Controllers
 
                     list.Add(tmpModel);
                 }
+                ModelsKeeper msaevm = new ModelsKeeper() { movieSearchReturnObjectViewModels = list };
 
-                return PartialView("_SearchResultPartial",list);
+                return PartialView("_SearchResultPartial",msaevm);
             }
             else
                 return PartialView("_SearchResultPartial"); 
@@ -93,8 +95,8 @@ namespace FilmBayMVC.Controllers
             id=1;
             FilmBayMVC.Models.film_table film = new FilmBayMVC.Models.film_table();
             film = await DBAccess.GetFilmById(id);
-
-            return View(film);
+            ModelsKeeper movieSearchAndEditVM = new ModelsKeeper() { filmTable = film };
+            return View(movieSearchAndEditVM);
         }
     }
 

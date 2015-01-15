@@ -1,0 +1,12 @@
+﻿ @font-face {
+      font-family: MYRIADPRO-REGULAR;
+      src: url('Fonts/MYRIADPRO-REGULAR.OTF')format('opentype');
+      font-weight: bold;
+      font-style: normal;
+    }
+ @font-face{
+     font-family: MyriadProBold;
+     src: url('Fonts/MYRIADPRO-BOLD.OTF')format('opentype');
+     font-weight:bold;
+     font-style:normal;
+ }

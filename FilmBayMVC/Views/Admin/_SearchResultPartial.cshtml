@@ -1,4 +1,4 @@
-﻿@model List<FilmBayMVC.Models.MovieSearchReturnObjectViewModel>
+﻿@model FilmBayMVC.ViewModels.ModelsKeeper
 
 <table>
     <tr>
@@ -6,19 +6,19 @@
     </tr>
     @if (Model != null)
     {
-        for (int i = 0; i < Model.Count(); i++)
+        for (int i = 0; i < Model.movieSearchReturnObjectViewModels.Count(); i++)
         {
             <tr>
                 <td>
                     <label style="background-color:red">test</label>
                     @{
                     String tmpOrginalTitle = "orginalTitle" + i;
-                    <label id=@tmpOrginalTitle>@Model[i].orginalTitle</label>
+                    <label id=@tmpOrginalTitle>@Model.movieSearchReturnObjectViewModels[i].orginalTitle</label>
                     String tmpPosterPath = "posterPath" + i;
-                    <img id=@tmpPosterPath src="@Model[i].posterPath" style="height:200px"/>
+                    <img id=@tmpPosterPath src="@Model.movieSearchReturnObjectViewModels[i].posterPath" style="height:200px"/>
                     }
                     @{String tmpId = "id" + i;
-                    <label id=@tmpId style="visibility:hidden">@Model[i].id</label>
+                    <label id=@tmpId style="visibility:hidden">@Model.movieSearchReturnObjectViewModels[i].id</label>
                     }   
                 </td>
                 <td>
@@ -29,7 +29,7 @@
                                     @{
                                      String idReleaseDate = "releaseDate" + i;
 
-                                    <label id="@idReleaseDate">@Model[i].releaseDate</label>
+                                    <label id="@idReleaseDate">@Model.movieSearchReturnObjectViewModels[i].releaseDate</label>
                                     }
                                 </td>
                             </tr>
@@ -37,7 +37,7 @@
                                 <td>
                                     @{
                     string idTitle = "title" + i;
-                    <label id=@idTitle>@Model[i].title</label>
+                    <label id=@idTitle>@Model.movieSearchReturnObjectViewModels[i].title</label>
                                     }
                                 </td>
                             </tr>
@@ -46,7 +46,7 @@
                     </div>
                     @{
                         string idPopularity = "popularity"+i;
-                    <label id=@idPopularity style="visibility:hidden">@Model[i].popularity</label>
+                    <label id=@idPopularity style="visibility:hidden">@Model.movieSearchReturnObjectViewModels[i].popularity</label>
                     }
                     @{
                          string idButton = "button" + i;

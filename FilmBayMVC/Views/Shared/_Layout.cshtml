@@ -1,4 +1,4 @@
-﻿
+﻿@model FilmBayMVC.ViewModels.ModelsKeeper
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,17 +45,16 @@
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div style="background-color:#428bca;" class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="partialViewDivMainLayout" id="partialViewDivMainLayout">
+                        @Html.Partial("_userMovieSearchPartial", Model)
+                    </div>
+                </div>
                 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
             </div>
         </div>
     </div>
@@ -69,8 +68,19 @@
 <script>
     function searchFilmInDB(value) {
         var filmName = value.replace(/\s/g, "+")
-        alert(filmName);
-        $('#partialViewDiv').load('@Url.Action("SearchFilmResult", "Admin")' + '?filmName=' + filmName);
+        $('#partialViewDivMainLayout').load('@Url.Action("SearchFilmResult", "Home")' + '?filmName=' + filmName);
+    }
+    function onFilmDiv_Click(value) {
+       
+        window.location.href = '@Url.Action("FilmPage", "FilmPage")' + '?id=' + value;
+        @*$.ajax({
+            url: '@Url.Action("FilmPage", "FilmPage")' + '?id=' + value,
+            data: {}, //parameters go here in object literal form
+            type: 'GET',
+            //datatype: 'json',
+            success: function (data) { alert('got here with data'); },
+            error: function () { alert('something bad happened'); }
+        });*@
     }
 
 </script>

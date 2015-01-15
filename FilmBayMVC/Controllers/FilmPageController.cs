@@ -6,19 +6,21 @@ using System.Web.Mvc;
 using FilmBayMVC.Models;
 using FilmBayMVC;
 using System.Threading.Tasks;
+using FilmBayMVC.ViewModels;
 namespace FilmBayMVC.Controllers
 {
     public class FilmPageController : Controller
     {
         // GET: FilmPage
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
-
-        public async Task<ActionResult> FilmPage()
+        [HttpGet]
+        public async Task<ActionResult> FilmPage(int id)
         {
-            int id =6;
+            
             film_table f = new film_table();
 
             f = await DBAccess.GetFilmById(id);
@@ -36,11 +38,15 @@ namespace FilmBayMVC.Controllers
             film.Title = f.title;
             film.rating = f.rating.ToString();
             film.duration = f.duration.ToString();
+
+            film.Writers = new List<String>();
             
             foreach(writers_table w in writers)
             {
                 film.Writers.Add(w.ToString());
             }
+
+            film.Producers = new List<String>();
             foreach (producer_table p in producers)
             {
                 film.Producers.Add(p.ToString());
@@ -49,7 +55,8 @@ namespace FilmBayMVC.Controllers
             film.Composers = composers;
             film.ReleaseDate = f.release_date.ToString().Substring(0, 10);
 
-            return View(film);
+            ModelsKeeper modelsKeeper = new ModelsKeeper() { filmPageModel = film };
+            return View(modelsKeeper);
         }
     }
 }
