@@ -6,8 +6,7 @@ using System.Web.Mvc;
 using FilmBayMVC.Models;
 using FilmBayMVC;
 using System.Threading.Tasks;
-using FilmBayMVC.ViewModels;
-namespace FilmBayMVC.Controllers
+using FilmBayMVC.ViewModels;namespace FilmBayMVC.Controllers
 {
     public class FilmPageController : Controller
     {
@@ -21,15 +20,9 @@ namespace FilmBayMVC.Controllers
         public async Task<ActionResult> FilmPage(int id)
         {
             
-            film_table f = new film_table();
 
-            f = await DBAccess.GetFilmById(id);
-            List<writers_table> writers = await DBAccess.GetWriters(id);
-            List<producer_table> producers = await DBAccess.GetProducers(id);
-            List<music_creator_table> composers = await DBAccess.GetComposers(id);
-            List<actor_table> actors = await DBAccess.GetActors(id);
-            List<string> languages = await DBAccess.GetLanguages(id);
-            List<string> genres = await DBAccess.GetGenres(id);
+            FilmPageModel film = await ModelCreator.getFilmPageModel(id);
+       
 
             FilmPageModel film = new FilmPageModel();
             film.Director = f.director_name + "" + f.director_surname;
