@@ -23,6 +23,9 @@ namespace FilmBayMVC.Connectivity
             //List<genere_table> genres = new List<genere_table>();
 
             List<string> genres = details.genres;
+            List<string> languages = details.languages;
+
+
             string Day = Movie.releaseDate.Substring(9, 2);
             string Month = Movie.releaseDate.Substring(6, 2);
             string Year = Movie.releaseDate.Substring(1, 4);

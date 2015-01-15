@@ -11,5 +11,6 @@ namespace FilmBayMVC.ViewModels
         public List<MovieSearchReturnObjectViewModel> movieSearchReturnObjectViewModels;
         public film_table filmTable;
         public FilmPageModel filmPageModel;
+   
     }
 }

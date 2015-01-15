@@ -52,7 +52,23 @@
         </div>
     </div>
     </div>
+    <div class="row">
+        @if (Model.filmPageModel.actors != null)
+        {
+            for (int i = 0; i < Model.filmPageModel.actors.Count(); i++)
+            {
+                <div class="col-sm-2">
+                    <img src="@Model.filmPageModel.actors[i].actor_photo_url" class="img-responsive" style="height:50px" />
+                </div>
+                <div class="col-sm-3">
+                    Model.filmPageModel.actors[i].actor_name.ToString();
+                    Model.filmPageModel.actors[i].actor_surname.ToString();
+                </div>
+            }
+        }
 
+
+    </div>
    
        
     </div>
