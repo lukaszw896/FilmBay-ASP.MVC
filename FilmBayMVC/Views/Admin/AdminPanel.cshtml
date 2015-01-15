@@ -23,17 +23,19 @@
     left:50%;
     transform:translateX(-50%);
 }
-
-
 </style>
+<div id="loadingDiv" style="position:fixed;height:100%; width:100%;z-index:5;background-color:blue;opacity:0.6;left:0px;top:0px;visibility:hidden">
+    @{Html.RenderPartial("_LoadingAnimationPartial");}
+</div>
 <div class="body" id="div-body" onload="('.div-body').center()">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Input film title</span>
             <input name="FilmName" id="FilmName" type="text"  >
             <button class="buttonFilmSearch" onclick="getInputValue(FilmName.value)"> OK </button>
         </div>
-    
+
 </div>
+
 <div style="height:1000px" class="partialViewDiv" id="partialViewDiv">
     @{Html.RenderPartial("_SearchResultPartial", Model);}
 </div>
@@ -43,12 +45,12 @@
 </div>
 
 <script>
-    @*$('.buttonFilmSearch').on('click', function () {
-        var filmName = $('#FilmName').attr('value');
-        //var filmName = "";
-        //filmName = document.getElementById('FilmName').value;
-        $('#partialViewDiv').load('@Url.Action("SearchFilmResult", "Admin")'+'?filmName='+filmName);
-    });*@
+        @*$('.buttonFilmSearch').on('click', function () {
+                var filmName = $('#FilmName').attr('value');
+                //var filmName = "";
+                //filmName = document.getElementById('FilmName').value;
+                $('#partialViewDiv').load('@Url.Action("SearchFilmResult", "Admin")'+'?filmName='+filmName);
+            });*@
 
     function getInputValue(value) {
         var filmName = value.replace(/\s/g,"+")
@@ -58,34 +60,33 @@
 
 
     function partialViewButtonClick(e) {
-        // var id = $(e.target).id;
-        alert("test");
+    // var id = $(e.target).id;
+    alert("test");
     }
 
     function informationPopup(labelText) {
-        alert(labelText);
+    alert(labelText);
     }
 
- 
-        function partialViewButtonClick(buttonId) {
-            var buttonId = buttonId;
-            var id = buttonId.substring(6, 7);
-            var filmId = document.getElementById("id" + id).textContent;
-            var title = document.getElementById("title" + id).textContent;
-            var orginalTitle = document.getElementById("orginalTitle" + id).textContent;
-            var popularity = document.getElementById("popularity" + id).textContent;
-            var releaseDate = document.getElementById("releaseDate" + id).textContent;
-            var posterPath = document.getElementById("posterPath" + id).src;
-        
-            alert(id + "," + title + "," + orginalTitle + "," + popularity + "," + releaseDate + "," + posterPath);
 
-            $.ajax({
-                url: '@Url.Action("AddFilmToDatabase", "Admin")' + '?id=' + filmId+'&title='+title+'&orginalTitle='+orginalTitle+'&popularity='+popularity+'&releaseDate='+releaseDate+'&posterPath='+posterPath,
-                data: {}, //parameters go here in object literal form
-                type: 'GET',
-                //datatype: 'json',
-                success: function (data) { alert('got here with data'); },
-                error: function () { alert('something bad happened'); }
-            });
-        }
+    function partialViewButtonClick(buttonId) {
+        var div = document.getElementById("loadingDiv");
+        loadingDiv.style.visibility = "visible";
+    var buttonId = buttonId;
+    var id = buttonId.substring(6, 7);
+    var filmId = document.getElementById("id" + id).textContent;
+    var title = document.getElementById("title" + id).textContent;
+    var orginalTitle = document.getElementById("orginalTitle" + id).textContent;
+    var popularity = document.getElementById("popularity" + id).textContent;
+    var releaseDate = document.getElementById("releaseDate" + id).textContent;
+    var posterPath = document.getElementById("posterPath" + id).src;
+    $.ajax({
+    url: '@Url.Action("AddFilmToDatabase", "Admin")' + '?id=' + filmId+'&title='+title+'&orginalTitle='+orginalTitle+'&popularity='+popularity+'&releaseDate='+releaseDate+'&posterPath='+posterPath,
+    data: {}, //parameters go here in object literal form
+    type: 'GET',
+    //datatype: 'json',
+    success: function (data) { loadingDiv.style.visibility = "hidden"; alert('got here with data'); },
+    error: function () { loadingDiv.style.visibility = "hidden"; alert('something bad happened'); }
+    });
+    }
     </script>

@@ -26,7 +26,7 @@ namespace FilmBayMVC
              //   if (nameinDB == false)
                 {
 
-                    if (studio.Trim() != "")
+                    if (studio != null && studio.Trim() != "")
                     {
                         dane.film_studio = studio;
                     }
