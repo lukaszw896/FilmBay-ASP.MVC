@@ -152,11 +152,13 @@ namespace FilmBayMVC
             List<string> producers = new List<string>();
             List<string> composers = new List<string>();
 
+            string director = "";
             writers = TMDbHelper.FindString(@"""Screenplay"",""name"":""", @""",""", responseContent.ToString());
             producers = TMDbHelper.FindString(@"""Producer"",""name"":""", @""",""", responseContent.ToString());
             composers = TMDbHelper.FindString(@"""Original Music Composer"",""name"":""", @""",""", responseContent.ToString());
-
-            return new CastInformation(writers, producers, composers);
+            director = TMDbHelper.FindSingleString(@"""Director"",""name"":""", @""",""", responseContent.ToString());
+            if (director == null) director = "";
+            return new CastInformation(writers, producers, composers, director);
 
         }
 
