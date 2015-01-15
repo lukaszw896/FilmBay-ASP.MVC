@@ -18,7 +18,7 @@ namespace FilmBayMVC.Connectivity
             List<actor_table> actors = await DBAccess.GetActors(filmid);
             List<string> languages = await DBAccess.GetLanguages(filmid);
             List<string> genres = await DBAccess.GetGenres(filmid);
-
+            List<photos_table> photos = await DBAccess.GetPhotos(filmid);
             FilmPageModel film = new FilmPageModel();
 
             film.Director = f.director_name + " " + f.director_surname;
@@ -40,6 +40,7 @@ namespace FilmBayMVC.Connectivity
             film.actors = actors;
             film.Composers = composers;
             film.Genres = genres;
+            film.Photos = photos;
             film.ReleaseDate = f.release_date.ToString().Substring(0, 10);
             return film;
 
