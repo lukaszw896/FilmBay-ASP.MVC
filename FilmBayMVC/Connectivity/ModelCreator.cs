@@ -20,6 +20,7 @@ namespace FilmBayMVC.Connectivity
             List<string> genres = await DBAccess.GetGenres(filmid);
 
             FilmPageModel film = new FilmPageModel();
+
             film.Director = f.director_name + " " + f.director_surname;
             film.poster = f.poster_url;
             film.storyline = f.storyline;
@@ -29,15 +30,16 @@ namespace FilmBayMVC.Connectivity
             film.Writers = new  List<string>();
             foreach (writers_table w in writers)
             {
-                film.Writers.Add(w.ToString());
+                film.Writers.Add(w.writer_name.ToString() + " " + w.writer_surname.ToString());
             }
             film.Producers = new List<string>();
             foreach (producer_table p in producers)
             {
-                film.Producers.Add(p.ToString());
+                film.Producers.Add(p.producer_name.ToString() + " " + p.producer_surname.ToString());
             }
             film.actors = actors;
             film.Composers = composers;
+            film.Genres = genres;
             film.ReleaseDate = f.release_date.ToString().Substring(0, 10);
             return film;
 

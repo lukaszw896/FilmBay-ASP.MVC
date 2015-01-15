@@ -274,6 +274,7 @@
     <Content Include="Views\Admin\EditFilm.cshtml" />
     <Content Include="Views\FilmPage\FilmPage.cshtml" />
     <Content Include="Views\Shared\_userMovieSearchPartial.cshtml" />
+    <Content Include="Views\Shared\_LoadingAnimationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
