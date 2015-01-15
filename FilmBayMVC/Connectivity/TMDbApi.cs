@@ -84,7 +84,10 @@ namespace FilmBayMVC
             genres = TMDbHelper.FindStringWithOneUknownWord(@"{""id"":", @",""name"":""", @"""}", genere);   
             storyline = TMDbHelper.FindSingleString(@"""overview"":""", @""",""", responseContent.ToString());
             studio = TMDbHelper.FindSingleString(@"""production_companies"":[{""name"":""", @""",""", responseContent.ToString());
-            languages= TMDbHelper.FindString(@"""spoken_languages"":[", @"}]", responseContent.ToString());
+            string language;
+            language= TMDbHelper.FindSingleString(@"""spoken_languages"":[", @"]", responseContent.ToString());
+            languages = TMDbHelper.FindString(@"name"":""", @"""}", language);
+
             duration = TMDbHelper.FindSingleString(@"""runtime"":", @",""", responseContent.ToString());
             ageRestriction = TMDbHelper.FindSingleString(@"""adult"":", @",""", responseContent.ToString());
             
