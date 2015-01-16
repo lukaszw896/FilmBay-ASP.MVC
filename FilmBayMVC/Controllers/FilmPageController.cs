@@ -71,9 +71,7 @@ namespace FilmBayMVC.Controllers
                     con.Dispose();
                 }
                 con.Dispose();
-                //  filmPage.IsEnabled = true;
-            
-            
+                 
             return View("FilmPage", film);
         }
     }
