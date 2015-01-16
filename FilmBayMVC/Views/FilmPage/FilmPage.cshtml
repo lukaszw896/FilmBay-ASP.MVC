@@ -2,6 +2,13 @@
 @{
     ViewBag.Title = "FilmPage";
 }
+<style>
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        width: 70%;
+        margin: auto;
+    }
+</style>
 
 <h2>FilmPage</h2>
 <div class="container">
@@ -12,29 +19,62 @@
     <div class="row">
         <div class="col-sm-6">
             @Html.ActionLink(@Model.filmPageModel.Title, "FilmPage")   (@Model.filmPageModel.ReleaseDate.ToString().Substring(0, 4))
-
+            <div class="row">
+                
+                    @if (Model.filmPageModel.Genres != null)
+                    {
+                        for (int i = 0; i < Model.filmPageModel.Genres.Count; i++)
+                        {<div class="col-sm-3">
+                            @Model.filmPageModel.Genres[i]
+                        </div>
+                        }
+                    }
+              
+            </div>
+            <div class="row"><br /></div>
             <div class="row">@Model.filmPageModel.duration</div>
             <div class="row">
                 @Model.filmPageModel.storyline
             </div>
-
+            <div class="row"><br /></div>
             <div class="row">
-                <div class="col-sm-3">Directed By:</div><div class="col-sm-3">@Model.filmPageModel.Director</div>
+                <div class="col-sm-3"><label>Directed By:</label></div><div class="col-sm-3">@Model.filmPageModel.Director</div>
             </div>
             <div class="row">
-                <div class="col-sm-3">
-                    Writers:
-                    @if (Model.filmPageModel.Writers != null)
-                    {
-                        for (int i = 0; i < Model.filmPageModel.Writers.Count; i++)
-                        {
-                            Model.filmPageModel.Writers[i].ToString();
-                        }
-                    }
+                
+            @if (Model.filmPageModel.Writers != null)
+            {
+                <div class="col-sm-2">
+                    <label> Writers:</label>
                 </div>
+                for (int i = 0; i < Model.filmPageModel.Writers.Count; i++)
+                {
+                        <div class="col-sm-3">
+                            @Model.filmPageModel.Writers[i] <label> </label>
+                        </div>
+                      }
+                  }
+                
             </div>
             <div class="row">
-                <div class="col-sm-3">Released: </div><div class="col-sm-3">@Model.filmPageModel.ReleaseDate</div>
+                
+                @if (Model.filmPageModel.Composers != null)
+                {
+                    <div class="col-sm-2">
+                        <label>Composers:</label>
+                    </div>
+                    for (int i = 0; i < Model.filmPageModel.Composers.Count; i++)
+                    {   <div class="col-sm-3">
+                        @Model.filmPageModel.Composers[i].music_creator_name <label> </label>
+                        @Model.filmPageModel.Composers[i].music_creator_surname 
+                          </div>
+                    }
+                }
+                
+            </div>
+           
+            <div class="row">
+                <div class="col-sm-3"><label>Released:</label> </div><div class="col-sm-3">@Model.filmPageModel.ReleaseDate</div>
             </div>
             <div class="row">
                 @*<div class="col-sm-3">Studio: </div><div class="col-sm-3">@Model</div>*@
@@ -52,8 +92,65 @@
         </div>
     </div>
     </div>
+    <div class="row">
+        <br /><br />
+    </div>
+    <div class="row" style="height:300px;overflow:auto">
+        @if (Model.filmPageModel.actors != null)
+        {
+            for (int i = 0; i < Model.filmPageModel.actors.Count(); i++)
+            {
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="@Model.filmPageModel.actors[i].actor_photo_url" class="img-responsive" style="height:50px" />
+                    </div>
+                    <div class="col-sm-3">
+                        @Model.filmPageModel.actors[i].actor_name
+                        @Model.filmPageModel.actors[i].actor_surname
+                    </div>
+                </div>
+            <div class="row"><br /></div>
+            }
+        }
 
-   
-       
+
+    </div>
+    <div class="row"><br /> <br /></div>
+        <div class="row">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    @for (int i = 0; i < Model.filmPageModel.Photos.Count; i++)
+                    {
+                        string x = i.ToString();
+                        <li data-target="#myCarousel" data-slide-to="x" class="active"></li>
+                    }
+                </ol>
+
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="@Model.filmPageModel.Photos[0].photo_url" alt="Photo" height="300" width="400" class="img-responsive">
+                    </div>
+                    @for (int i = 1; i < Model.filmPageModel.Photos.Count; i++)
+                    {
+                        <div class="item ">
+                            <img src="@Model.filmPageModel.Photos[i].photo_url" alt="Photo" height="300" width="400" class="img-responsive" >
+                        </div>
+                    }
+                </div>
+
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
     </div>
 

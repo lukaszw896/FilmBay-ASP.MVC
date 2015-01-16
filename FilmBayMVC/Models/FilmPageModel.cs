@@ -26,6 +26,7 @@ namespace FilmBayMVC.Models
         public List<music_creator_table> Composers { get; set; }
 
         public List<actor_table> actors { get; set; }
+        public List<photos_table> Photos { get; set; }
 
 
     }

@@ -636,7 +636,7 @@ namespace FilmBayMVC
                 List<string> gens = new List<string>();
                 foreach(genere_table g in Genres)
                 {
-                    gens.Add(g.ToString());
+                    gens.Add(g.genere_name.ToString());
                 }
                 return gens;
             });
