@@ -1,0 +1,28 @@
+﻿@model FilmBayMVC.ViewModels.ModelsKeeper
+@ViewBag.PageNumber
+
+@{
+    if (Model.filmTableList.Count() > ViewBag.PageNumber * 10)
+    {
+        int numberOfFilmsInView;
+        if (ViewBag.PageNumber * 10 + 10 > Model.filmTableList.Count())
+        {
+            numberOfFilmsInView = Model.filmTableList.Count();
+        }
+        else
+        {
+            numberOfFilmsInView = ViewBag.PageNumber * 10 + 10;
+        }
+
+        for (int i = (ViewBag.PageNumber * 10); i < numberOfFilmsInView; i++)
+        {
+            <div>
+                @Model.filmTableList[i].title;
+            </div>
+        }
+           int numberOfPages = Model.filmTableList.Count / 10;
+           for (int i = 0; i < numberOfPages; i++) {
+               <button type="button" id=@i class="btn btn-link" onclick="openPageNumber(this.id)">@i</button>
+        }   
+    }
+}
