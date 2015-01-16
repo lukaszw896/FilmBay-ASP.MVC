@@ -8,6 +8,8 @@ using FilmBayMVC;
 using System.Threading.Tasks;
 using FilmBayMVC.ViewModels;
 using FilmBayMVC.Connectivity;
+using Microsoft.AspNet.Identity;
+
 namespace FilmBayMVC.Controllers
 {
     public class FilmPageController : Controller
@@ -24,33 +26,55 @@ namespace FilmBayMVC.Controllers
             
 
             FilmPageModel film = await ModelCreator.getFilmPageModel(id);
-       
-
-            //film.Director = f.director_name + "" + f.director_surname;
-            //film.poster = f.poster_url;
-            //film.storyline = f.storyline;
-            //film.Title = f.title;
-            //film.rating = f.rating.ToString();
-            //film.duration = f.duration.ToString();
-
-            //film.Writers = new List<String>();
-            
-            //foreach(writers_table w in writers)
-            //{
-            //    film.Writers.Add(w.ToString());
-            //}
-
-            //film.Producers = new List<String>();
-            //foreach (producer_table p in producers)
-            //{
-            //    film.Producers.Add(p.ToString());
-            //}
-            //film.actors = actors;
-            //film.Composers = composers;
-            //film.ReleaseDate = f.release_date.ToString().Substring(0, 10);
-
+    
             ModelsKeeper modelsKeeper = new ModelsKeeper() { filmPageModel = film };
             return View(modelsKeeper);
+        }
+        public async Task <ActionResult> Vote ( int number, int filmid)
+        
+        {
+          //  string userid = User.Identity.GetUserId().ToString();
+            string userid = "32d24310-3ed4-4dda-988d-1cffe134de9a";
+
+        //    int id = 18;
+           int voteforfilmresult= await DBAccess.VoteForFilm(filmid, userid, number);
+           DBAccess.vote(number, filmid, voteforfilmresult);
+           FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
+
+            return View("FilmPage", film);
+        }
+        public async Task<ActionResult> Comment(string comment, int filmid)
+        {
+              FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
+           // string userid = User.Identity.GetUserId().ToString();
+            string username = User.Identity.Name.ToString();
+
+            MyLINQDataContext con = new MyLINQDataContext();
+            comment_table ct = new comment_table();
+      
+            ct.id_film = filmid;
+            ct.id= username;
+
+            bool Alreadycommented = (con.comment_tables.AsParallel().Where(s => s.id_film == filmid && s.id == username).Count()) > 0;
+           
+                if (Alreadycommented == true)
+                {
+                    ct.comment = comment;
+                    DBAccess.UpdateComment(ct);
+                    con.Dispose();
+                }
+                else
+                {
+                    ct.comment = comment;
+                    DBAccess.AddComment(ct);
+
+                    con.Dispose();
+                }
+                con.Dispose();
+                //  filmPage.IsEnabled = true;
+            
+            
+            return View("FilmPage", film);
         }
     }
 }

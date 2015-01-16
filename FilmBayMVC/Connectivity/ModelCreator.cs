@@ -21,6 +21,7 @@ namespace FilmBayMVC.Connectivity
             List<photos_table> photos = await DBAccess.GetPhotos(filmid);
             FilmPageModel film = new FilmPageModel();
 
+            film.id = f.id_film;
             film.Director = f.director_name + " " + f.director_surname;
             film.poster = f.poster_url;
             film.storyline = f.storyline;

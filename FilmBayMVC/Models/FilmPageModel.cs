@@ -7,6 +7,7 @@ namespace FilmBayMVC.Models
 {
     public class FilmPageModel
     {
+        public int id { get; set; }
         public string Title { get; set; }
         public string ReleaseDate { get; set; }
 
