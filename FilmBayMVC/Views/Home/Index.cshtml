@@ -21,13 +21,14 @@
 
 </style>
 <div class="jumbotron" style="align-content:center;min-width:1140px">
-    <div >
+    <div style="text-align:center;margin-bottom:10%;font-size:4em;height:60px;top:0px" >Film Bay</div>
+    <div>
         @{
             if (Model.filmTableList.Count() > 2)
             {
                 <div class="row" style="height:400px; ">
                     <div class="col-md-6" style="height:100%">
-                        <div class="row" style="background-color:red;height:60%;overflow:hidden;position:relative;z-index:2" >
+                        <div class="row" style="background-color:red;height:60%;overflow:hidden;position:relative;z-index:2">
                             <div style="z-index:3">
                                 <img style="width:100%;" src=@Model.mainPageFilmPhotos[0] />
                             </div>
@@ -36,50 +37,117 @@
                                     <img src=@Model.filmTableList[0].poster_url style="height:100%" />
                                 </div>
                                 @{
-                                     String title_0 = Model.filmTableList[0].title + Model.filmTableList[0].release_date.ToString().Substring(0, 4);
+                String title_0 = Model.filmTableList[0].title + " (" + Model.filmTableList[0].release_date.ToString().Substring(0, 4)+")";
                                 }
-                                <div class="col-sm-10" style="color:white">
+                                <div class="col-sm-10" style="color:white;font-size:1em">
                                     @title_0
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="row" style="background-color:green;height:40%">
                             <div class="col-md-6 nopadding img-container" style="width:50%;background-color:brown;">
                                 <img src=@Model.mainPageFilmPhotos[2] />
+                                <div class="row" style="height:80px; position:absolute; left:25px;bottom:10px;z-index:6;">
+                                    <div style="height:100%" class="col-sm-4">
+                                        <img src=@Model.filmTableList[2].poster_url style="height:100%" />
+                                    </div>
+                                    @{
+                                            String title_2 = Model.filmTableList[2].title + " (" + Model.filmTableList[2].release_date.ToString().Substring(0, 4) + ")";
+                                    }
+                                    <div class="col-sm-8" style="color:white;font-size:13px">
+                                        @title_2
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="col-md-6 nopadding img-container" style="width:50%;background-color:yellow;">
                                 <img src=@Model.mainPageFilmPhotos[3] />
+                                <div class="row" style="height:80px; position:absolute; left:25px;bottom:10px;z-index:6;">
+                                    <div style="height:100%" class="col-sm-4">
+                                        <img src=@Model.filmTableList[3].poster_url style="height:100%" />
+                                    </div>
+                                    @{
+                                            String title_3 = Model.filmTableList[3].title + " (" + Model.filmTableList[3].release_date.ToString().Substring(0, 4) + ")";
+                                    }
+                                    <div class="col-sm-8" style="color:white;font-size:13px">
+                                        @title_3
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6" style="background-color:aqua;height:100%">
                         <div class="row" style="background-color:green;height:40%">
-                            <div class="col-md-6 nopadding img-container" style="width:50%;background-color:brown;">
+                            <div class="col-md-6 nopadding img-container" style="width:50%;background-color:brown;position:relative">
                                 <img src=@Model.mainPageFilmPhotos[4] />
+                                <div class="row" style="height:80px; position:absolute; left:25px;bottom:10px;z-index:6;">
+                                    <div style="height:100%" class="col-sm-4">
+                                        <img src=@Model.filmTableList[4].poster_url style="height:100%" />
+                                    </div>
+                                    @{
+                                            String title_4 = Model.filmTableList[4].title + " (" + Model.filmTableList[5].release_date.ToString().Substring(0, 4) + ")";
+                                    }
+                                    <div class="col-sm-8" style="color:white;font-size:13px">
+                                        @title_4
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="col-md-6 nopadding img-container" style="width:50%;background-color:yellow;">
+                            <div class="col-md-6 nopadding img-container" style="width:50%;background-color:yellow;position:relative">
                                 <img src=@Model.mainPageFilmPhotos[5] />
+                                <div class="row" style="height:80px; position:absolute; left:25px;bottom:10px;z-index:6;">
+                                    <div style="height:100%" class="col-sm-4">
+                                        <img src=@Model.filmTableList[5].poster_url style="height:100%" />
+                                    </div>
+                                    @{
+                                        String title_5 = Model.filmTableList[5].title + " (" + Model.filmTableList[5].release_date.ToString().Substring(0, 4) + ")";
+                                    }
+                                    <div class="col-sm-8" style="color:white;font-size:13px">
+                                        @title_5
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                        <div class="row"  style="background-color:red;height:60%;overflow:hidden">
+                        <div class="row" style="background-color:red;height:60%;overflow:hidden;position:relative">
                             <img style="width:100%" src=@Model.mainPageFilmPhotos[1] />
+                            <div class="row" style="height:100px; position:absolute; left:25px;bottom:10px;z-index:6;">
+                                <div style="height:100%" class="col-sm-2">
+                                    <img src=@Model.filmTableList[1].poster_url style="height:100%" />
+                                </div>
+                                @{
+                                     String title_1 = Model.filmTableList[1].title + " (" + Model.filmTableList[1].release_date.ToString().Substring(0, 4) + ")";
+                                }
+                                <div class="col-sm-10" style="color:white;font-size:1em">
+                                    @title_1
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             }
         }
         @*@{
-            for (int i = 0; i < Model.filmTableList.Count(); i++)
-            {
-                <div class="row">
-                    <div class="col-sm-4">
-                        <img style="max-height:250px" src=@Model.filmTableList[i].poster_url />
+                for (int i = 0; i < Model.filmTableList.Count(); i++)
+                {
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img style="max-height:250px" src=@Model.filmTableList[i].poster_url />
+                        </div>
                     </div>
-                </div>
-            }
-        }*@
+                }
+            }*@
     </div>
+    <div>
+        @{Html.RenderPartial("_dropDownListPartialView", Model);}
+    </div>
+    <div id="filmListPartialView" class="filmListPartialView">
+        @{Html.RenderPartial("_filmsSortedByGenereAndRatingPartialView", Model);}
+    </div>
+
+
 
 </div>
 
@@ -89,6 +157,11 @@
             var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
             $(this).addClass(imgClass);
         })
+    }
+
+    function openPageNumber(value) {
+        $('#filmListPartialView').load('@Url.Action("LoadPage", "Home")' + '?id=' + value);
+
     }
 
 </script>

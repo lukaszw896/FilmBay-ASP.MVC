@@ -16,6 +16,7 @@ namespace FilmBayMVC.Controllers
             ModelsKeeper modelsKeeper = new ModelsKeeper();
              List<film_table> filmTable = await DBAccess.GetAllFilms();
              List<string> photosUrl = new List<string>();
+             List<string> generes = await DBAccess.getAllGeneres();
              for (int i = 0; i < filmTable.Count(); i++)
              {
                  for (int j = 0; j < filmTable.Count()-1; j++)
@@ -38,14 +39,26 @@ namespace FilmBayMVC.Controllers
                      }
                  }
              }
-             for (int i = 0; i < 6; i++)
+             if (filmTable.Count > 5)
              {
-                 List<photos_table> Photos = await DBAccess.GetPhotos(filmTable[i].id_film);
-                 photosUrl.Add(Photos[0].photo_url);
+                 for (int i = 0; i < 6; i++)
+                 {
+                     List<photos_table> Photos = await DBAccess.GetPhotos(filmTable[i].id_film);
+                     photosUrl.Add(Photos[0].photo_url);
+                 }
              }
                  modelsKeeper.mainPageFilmPhotos = photosUrl;
                  modelsKeeper.filmTableList = filmTable;
+                 modelsKeeper.generesList = generes;
+                 ViewBag.PageNumber = 0;
             return View(modelsKeeper);
+        }
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public ActionResult LoadPage(int id)
+        {
+            ViewBag.PageNumber = id;
+            return PartialView("_filmsSortedByGenereAndRatingPartialView");
         }
 
         public ActionResult About()
