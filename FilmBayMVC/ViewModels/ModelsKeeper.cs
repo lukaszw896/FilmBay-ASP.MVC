@@ -11,5 +11,13 @@ namespace FilmBayMVC.ViewModels
         public List<MovieSearchReturnObjectViewModel> movieSearchReturnObjectViewModels;
         public film_table filmTable;
         public FilmPageModel filmPageModel;
+        public List<film_table> filmTableList;
+        public List<string> mainPageFilmPhotos;
+        public ModelsKeeper()
+        {
+            this.movieSearchReturnObjectViewModels = new List<MovieSearchReturnObjectViewModel>();
+            this.filmTableList = new List<film_table>();
+            this.mainPageFilmPhotos = new List<string>();
+        }
     }
 }

@@ -11,9 +11,41 @@ namespace FilmBayMVC.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            ModelsKeeper modelsKeeper = new ModelsKeeper();
+             List<film_table> filmTable = await DBAccess.GetAllFilms();
+             List<string> photosUrl = new List<string>();
+             for (int i = 0; i < filmTable.Count(); i++)
+             {
+                 for (int j = 0; j < filmTable.Count()-1; j++)
+                 {
+
+                     if (filmTable[j].rating==null)
+                     {
+                         film_table tmp = filmTable[j];
+                         filmTable[j] = filmTable[j + 1];
+                         filmTable[j + 1] = tmp;
+                     }
+                     else if (filmTable[j + 1].rating != null)
+                     {
+                        if( filmTable[j].rating < filmTable[j + 1].rating)
+                        {
+                            film_table tmp = filmTable[j];
+                            filmTable[j] = filmTable[j + 1];
+                            filmTable[j + 1] = tmp;
+                        }
+                     }
+                 }
+             }
+             for (int i = 0; i < 6; i++)
+             {
+                 List<photos_table> Photos = await DBAccess.GetPhotos(filmTable[i].id_film);
+                 photosUrl.Add(Photos[0].photo_url);
+             }
+                 modelsKeeper.mainPageFilmPhotos = photosUrl;
+                 modelsKeeper.filmTableList = filmTable;
+            return View(modelsKeeper);
         }
 
         public ActionResult About()
