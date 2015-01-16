@@ -218,9 +218,9 @@
     })
     function voteClick(value) {
         var number = value;
-        alert(number);
+        alert(number + " number");
         var filmId = document.getElementById("filmid").textContent;
-        alert(filmId);
+        alert(filmId+" film id");
         $.ajax({
 
             url: '@Url.Action("Vote", "FilmPage")' + '?number=' + number + '&filmid=' +filmid,
