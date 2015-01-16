@@ -1040,6 +1040,23 @@ namespace FilmBayMVC
                 return FilmTables;
             });
         }
+        public async static Task<List<string>> getAllGeneres()
+        {
+            return await Task.Run(() =>
+            {
+                MyLINQDataContext con = new MyLINQDataContext();
+                List<genere_table> generesTable = new List<genere_table>();
+                List<String> generes = new List<string>();
+                generesTable = (from f in con.genere_tables select f).ToList();
+                foreach (genere_table gen in generesTable)
+                {
+                    generes.Add(gen.genere_name);
+                }
+                con.Dispose();
+
+                return generes;
+            });
+        }
         public async static Task<film_table> GetFilmById(int id)
         {
             return await Task.Run(() =>

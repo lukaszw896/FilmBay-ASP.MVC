@@ -186,7 +186,6 @@ namespace FilmBayMVC
             for (int i = 0; i < picturesPaths.Count;i++)
             {
                 picturesPaths[i] = "http://image.tmdb.org/t/p/w500" + picturesPaths[i];
-                i++;
             }
             return picturesPaths;
             

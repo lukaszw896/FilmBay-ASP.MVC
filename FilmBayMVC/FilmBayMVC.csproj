@@ -275,6 +275,8 @@
     <Content Include="Views\FilmPage\FilmPage.cshtml" />
     <Content Include="Views\Shared\_userMovieSearchPartial.cshtml" />
     <Content Include="Views\Shared\_LoadingAnimationPartial.cshtml" />
+    <Content Include="Views\Home\_dropDownListPartialView.cshtml" />
+    <Content Include="Views\Home\_filmsSortedByGenereAndRatingPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
