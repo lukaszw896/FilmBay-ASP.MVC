@@ -55,12 +55,97 @@ namespace FilmBayMVC.Controllers
         }
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult LoadPage(int id)
+        public async Task<ActionResult> LoadPage(int id)
         {
             ViewBag.PageNumber = id;
-            return PartialView("_filmsSortedByGenereAndRatingPartialView");
-        }
+            ModelsKeeper modelsKeeper = new ModelsKeeper();
+            List<film_table> filmTable = await DBAccess.GetAllFilms();
+            List<string> photosUrl = new List<string>();
+            List<string> generes = await DBAccess.getAllGeneres();
+            for (int i = 0; i < filmTable.Count(); i++)
+            {
+                for (int j = 0; j < filmTable.Count() - 1; j++)
+                {
 
+                    if (filmTable[j].rating == null)
+                    {
+                        film_table tmp = filmTable[j];
+                        filmTable[j] = filmTable[j + 1];
+                        filmTable[j + 1] = tmp;
+                    }
+                    else if (filmTable[j + 1].rating != null)
+                    {
+                        if (filmTable[j].rating < filmTable[j + 1].rating)
+                        {
+                            film_table tmp = filmTable[j];
+                            filmTable[j] = filmTable[j + 1];
+                            filmTable[j + 1] = tmp;
+                        }
+                    }
+                }
+            }
+            modelsKeeper.filmTableList = filmTable;
+            return PartialView("_filmsSortedByGenereAndRatingPartialView",modelsKeeper);
+        }
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public async Task<ActionResult> changeGenere(string genereName)
+        {
+            ViewBag.PageNumber = 0;
+            ModelsKeeper modelsKeeper = new ModelsKeeper();
+            List<film_table> filmTable = await DBAccess.GetAllFilms();
+            List<string> photosUrl = new List<string>();
+            List<string> generes = await DBAccess.getAllGeneres();
+            if (genereName != "All")
+            {
+                int tmpCount = filmTable.Count();
+                for (int i = 0; i < tmpCount; i++)
+                {
+                    bool hasGenere = false;
+                    List<string> tmpGeneres = await DBAccess.GetGenres(filmTable[i].id_film);
+                    for (int j = 0; j < tmpGeneres.Count; j++)
+                    {
+                        if (tmpGeneres[j] == genereName)
+                        {
+                            hasGenere = true;
+                            break;
+                        }
+                    }
+                    if (hasGenere == false)
+                    {
+                        filmTable.RemoveAt(i);
+                        i--;
+                        tmpCount--;
+                    }
+
+                }
+            }
+
+            for (int i = 0; i < filmTable.Count(); i++)
+            {
+                for (int j = 0; j < filmTable.Count() - 1; j++)
+                {
+
+                    if (filmTable[j].rating == null)
+                    {
+                        film_table tmp = filmTable[j];
+                        filmTable[j] = filmTable[j + 1];
+                        filmTable[j + 1] = tmp;
+                    }
+                    else if (filmTable[j + 1].rating != null)
+                    {
+                        if (filmTable[j].rating < filmTable[j + 1].rating)
+                        {
+                            film_table tmp = filmTable[j];
+                            filmTable[j] = filmTable[j + 1];
+                            filmTable[j + 1] = tmp;
+                        }
+                    }
+                }
+            }
+            modelsKeeper.filmTableList = filmTable;
+            return PartialView("_filmsSortedByGenereAndRatingPartialView", modelsKeeper);
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

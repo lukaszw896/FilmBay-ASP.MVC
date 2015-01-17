@@ -33,8 +33,8 @@ namespace FilmBayMVC.Controllers
         public async Task <ActionResult> Vote ( int number, int filmid)
         
         {
-          //  string userid = User.Identity.GetUserId().ToString();
-            string userid = "32d24310-3ed4-4dda-988d-1cffe134de9a";
+           string userid = User.Identity.GetUserId().ToString();
+           // string userid = "32d24310-3ed4-4dda-988d-1cffe134de9a";
 
         //    int id = 18;
            int voteforfilmresult= await DBAccess.VoteForFilm(filmid, userid, number);
