@@ -18,6 +18,8 @@ namespace FilmBayMVC.Controllers
         }
         public ActionResult AdminPanel()
         {
+
+
             return View();
         }
        
