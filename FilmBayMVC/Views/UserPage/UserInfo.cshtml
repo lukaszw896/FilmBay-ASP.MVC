@@ -1,45 +1,67 @@
-﻿@model List<FilmBayMVC.Models.FilmToShow>
+﻿@model FilmBayMVC.ViewModels.ModelsKeeper
+
 @{
     ViewBag.Title = "UserInfo";
 }
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-</head>
+<style>
+</style>
 
-<h2>My movies:</h2>
-@using (Html.BeginForm())
-{
-    <div class="form-horizontal" style="height:600px;overflow:auto">
+    <h2>My movies:</h2>
+       <div class="container">
+        @{
+            for (int i = 0; i < Model.filmsToShow.Count; i++)
+            {
+                String filmid = Model.filmsToShow[i].id.ToString();
+                <label hidden id="@filmid">@filmid</label>
+            }
+        }
+    </div>
+    <div class="row">
         @if (Model != null)
         {
-            for (int i = 0; i < Model.Count; i++)
+            for (int i = 0; i < Model.filmsToShow.Count(); i++)
             {
                 <div class="row"><br /></div>
                 <div class="row">
-                    <div class="col-sm-4 col-xs-2" >
+                    <div class="col-sm-3 col-xs-2">
                         <div class="row">
-                            @Html.ActionLink(@Model[i].Title, "Index")   (@Model[i].ReleaseDate.ToString())
-                           
+                            @Html.ActionLink(@Model.filmsToShow[i].Title, "FilmPage", "FilmPage", new { id = Model.filmsToShow[i].id }, null)   (@Model.filmsToShow[i].ReleaseDate.ToString())
+
                         </div>
                         <div class="row">
-                            <span class="glyphicon glyphicon-star"></span> @Model[i].rating /10
+                            <span class="glyphicon glyphicon-star"></span> @Model.filmsToShow[i].rating /5
                         </div>
                         <div class="row">
-                          Directed by @Model[i].Director
+                            Directed by @Model.filmsToShow[i].Director
                         </div>
                     </div>
-                    <div class="col-sm-4 col-xs-4">
-                        <img src="@Model[i].poster" class="img-responsive" style="height:160px" />
+                    <div class="col-sm-3 col-xs-2">
+                        <img src="@Model.filmsToShow[i].poster" class="img-responsive" style="height:160px" />
                     </div>
                 </div>
             }
         }
     </div>
-}
-
+<div class="row">
+    <ul class="inline">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</div>
+    }
+<script>
+    function onFilmDiv_Click(value) {
+       
+        window.location.href = '@Url.Action("FilmPage", "FilmPage")' + '?id=' + value;
+      @*$.ajax({
+          url: '@Url.Action("FilmPage", "FilmPage")' + '?id=' + value,
+          data: {}, //parameters go here in object literal form
+          type: 'GET',
+          //datatype: 'json',
+          success: function (data) { alert('got here with data'); },
+          error: function () { alert('something bad happened'); }
+      });*@
+      }
+</script>
        

@@ -7,6 +7,7 @@ namespace FilmBayMVC.Models
 {
     public class  FilmToShow 
     {
+        public int id { get; set; }
         public string Title { get; set; }
         public string ReleaseDate { get; set; }
           public List<string> Genres  {get; set;}

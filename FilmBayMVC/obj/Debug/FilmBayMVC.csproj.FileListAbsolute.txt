@@ -52,6 +52,7 @@ C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\bin\Microsoft.Owin.Se
 C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\obj\Debug\FilmBayMVC.dll
 C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\obj\Debug\FilmBayMVC.pdb
+C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\obj\Debug\FilmBayMVC.csprojResolveAssemblyReference.cache
 C:\Users\Lino\Desktop\Project 3\FilmBayMVC\bin\FilmBayMVC.dll.config
 C:\Users\Lino\Desktop\Project 3\FilmBayMVC\bin\FilmBayMVC.dll
 C:\Users\Lino\Desktop\Project 3\FilmBayMVC\bin\FilmBayMVC.pdb
@@ -106,5 +107,3 @@ C:\Users\Lino\Desktop\Project 3\FilmBayMVC\bin\Microsoft.Owin.Security.Twitter.x
 C:\Users\Lino\Desktop\Project 3\FilmBayMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Lino\Desktop\Project 3\FilmBayMVC\obj\Debug\FilmBayMVC.dll
 C:\Users\Lino\Desktop\Project 3\FilmBayMVC\obj\Debug\FilmBayMVC.pdb
-C:\Users\Lino\Desktop\Project 3\FilmBayMVC\obj\Debug\FilmBayMVC.csprojResolveAssemblyReference.cache
-C:\Users\Łukasz\Desktop\MVC Project\FilmBayMVC\FilmBayMVC\obj\Debug\FilmBayMVC.csprojResolveAssemblyReference.cache

@@ -23,24 +23,33 @@ namespace FilmBayMVC.Controllers
         [HttpGet]
         public async Task<ActionResult> FilmPage(int id)
         {
-            
-
+          
             FilmPageModel film = await ModelCreator.getFilmPageModel(id);
-    
+          
             ModelsKeeper modelsKeeper = new ModelsKeeper() { filmPageModel = film };
+
             return View(modelsKeeper);
+            
+    
         }
         public async Task <ActionResult> Vote ( int number, int filmid)
         
         {
            string userid = User.Identity.GetUserId().ToString();
-           // string userid = "32d24310-3ed4-4dda-988d-1cffe134de9a";
-
-        //    int id = 18;
+   
            int voteforfilmresult= await DBAccess.VoteForFilm(filmid, userid, number);
            DBAccess.vote(number, filmid, voteforfilmresult);
            FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
 
+            return View("FilmPage", film);
+        }
+        public async Task<ActionResult> Buy(int filmid)
+        {
+            string userid = User.Identity.GetUserId().ToString();
+
+                   await DBAccess.BuyFilm(filmid, userid);
+
+            FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
             return View("FilmPage", film);
         }
         public async Task<ActionResult> Comment(string comment, int filmid)
@@ -75,4 +84,5 @@ namespace FilmBayMVC.Controllers
             return View("FilmPage", film);
         }
     }
+
 }

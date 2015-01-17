@@ -12,9 +12,15 @@
 <style>
     .carousel-inner > .item > img,
     .carousel-inner > .item > a > img {
-        width: 70%;
+        width: 100%;
         margin: auto;
+        top:200px;
+        max-height: 600px !important;
     }
+.tales {
+  width: 100%;
+}
+
 </style>
 
 <h2>FilmPage</h2>
@@ -138,69 +144,76 @@
 
             </div>
         </div>
+
+
     </div>
     <div class="row">
         <br /><br />
     </div>
         <div class="row">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" >
                 <!-- Indicators -->
-                <ol class="carousel-indicators">
+                @*<ol class="carousel-indicators">
                     @for (int i = 0; i < Model.filmPageModel.Photos.Count; i++)
                     {
                         string x = i.ToString();
                         <li data-target="#myCarousel" data-slide-to="x" class="active"></li>
                     }
-                </ol>
+                </ol>*@
 
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="@Model.filmPageModel.Photos[0].photo_url" alt="Photo" height="300" width="400" class="img-responsive">
+                <div class="carousel-inner" >
+                    <div class="item active" style="max-height:600px">
+                        <img src="@Model.filmPageModel.Photos[0].photo_url" alt="Photo" class="tales"  >
                     </div>
                     @for (int i = 1; i < Model.filmPageModel.Photos.Count; i++)
                     {
-                        <div class="item ">
-                            <img src="@Model.filmPageModel.Photos[i].photo_url" alt="Photo" height="300" width="400" class="img-responsive" >
+                        <div class="item " style="max-height:600px">
+                            <img src="@Model.filmPageModel.Photos[i].photo_url" alt="Photo" class="tales"   >
                         </div>
-                        
+
                     }
                 </div>
-
-
                 <!-- Left and right controls -->
                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only" id="prev">Previous</span>
+                    <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </div>
         </div>
     <div class="row"><br /><br /></div>
 
 <div class="row">
-    @if (Model.filmPageModel.Comments != null)
-    {
-
-        for (int i = 0; i < Model.filmPageModel.Comments.Count; i++)
+        @if (Model.filmPageModel.Comments != null)
         {
-            <div class="col-sm-3">
-                @Model.filmPageModel.Comments[i] <label> </label>
-            </div>
+
+            for (int i = 0; i < Model.filmPageModel.Comments.Count; i++)
+            {
+                <div class="col-sm-3">
+                    @Model.filmPageModel.Comments[i] <label> </label>
+                </div>
+            }
         }
-    }
+
 </div>
 
 
 
     <div class="row">
         <div class="row">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#AddComment">
-                Add Comment
-            </button>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#AddComment">
+                    Add Comment
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" onclick="buyClick()">
+                  Buy Movie
+                </button>
+            </div>
         </div>
+
         <div class="row">
             <div class="modal fade" id="AddComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -242,6 +255,20 @@
         $.ajax({
 
             url: '@Url.Action("Vote", "FilmPage")' + '?number=' + number + '&filmid=' +filmId,
+            data: {}, //parameters go here in object literal form
+            type: 'GET',
+            //datatype: 'json',
+            success: function (data) { loadingDiv.style.visibility = "hidden"; alert('voted'); },
+            error: function () { loadingDiv.style.visibility = "hidden"; alert('not voted'); }
+        });
+    }
+    function buyClick() {
+
+        var filmId = document.getElementById("idfilm").textContent;
+        alert(filmId + " bought");
+        $.ajax({
+
+            url: '@Url.Action("Buy", "FilmPage")' + '?filmid=' + filmId,
             data: {}, //parameters go here in object literal form
             type: 'GET',
             //datatype: 'json',
