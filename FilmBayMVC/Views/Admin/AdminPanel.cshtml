@@ -58,12 +58,6 @@
         $('#partialViewDiv').load('@Url.Action("SearchFilmResult", "Admin")' + '?filmName=' + filmName);
     }
 
-
-    function partialViewButtonClick(e) {
-    // var id = $(e.target).id;
-    alert("test");
-    }
-
     function informationPopup(labelText) {
     alert(labelText);
     }
@@ -76,12 +70,14 @@
     var id = buttonId.substring(6, 7);
     var filmId = document.getElementById("id" + id).textContent;
     var title = document.getElementById("title" + id).textContent;
+    // var orginalTitleTmp = document.getElementById("orginalTitle" + id).textContent;
+    //var orginalTitle = orginalTitleTmp.replace(/&/g, "+");
     var orginalTitle = document.getElementById("orginalTitle" + id).textContent;
     var popularity = document.getElementById("popularity" + id).textContent;
     var releaseDate = document.getElementById("releaseDate" + id).textContent;
     var posterPath = document.getElementById("posterPath" + id).src;
     $.ajax({
-    url: '@Url.Action("AddFilmToDatabase", "Admin")' + '?id=' + filmId+'&title='+title+'&orginalTitle='+orginalTitle+'&popularity='+popularity+'&releaseDate='+releaseDate+'&posterPath='+posterPath,
+        url: '@Url.Action("AddFilmToDatabase", "Admin")' + '?id=' + filmId + '&title=' + escape(title) + '&orginalTitle=' + escape(orginalTitle) + '&popularity=' + popularity + '&releaseDate=' + releaseDate + '&posterPath=' + posterPath,
     data: {}, //parameters go here in object literal form
     type: 'GET',
     //datatype: 'json',

@@ -46,16 +46,16 @@ namespace FilmBayMVC.Controllers
         public async Task<ActionResult> Comment(string comment, int filmid)
         {
               FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
-           // string userid = User.Identity.GetUserId().ToString();
-            string username = User.Identity.Name.ToString();
+            string userid = User.Identity.GetUserId().ToString();
+           // string username = User.Identity.Name.ToString();
 
             MyLINQDataContext con = new MyLINQDataContext();
             comment_table ct = new comment_table();
       
             ct.id_film = filmid;
-            ct.id= username;
+            ct.id= userid;
 
-            bool Alreadycommented = (con.comment_tables.AsParallel().Where(s => s.id_film == filmid && s.id == username).Count()) > 0;
+            bool Alreadycommented = (con.comment_tables.AsParallel().Where(s => s.id_film == filmid && s.id == userid).Count()) > 0;
            
                 if (Alreadycommented == true)
                 {
@@ -71,9 +71,7 @@ namespace FilmBayMVC.Controllers
                     con.Dispose();
                 }
                 con.Dispose();
-                //  filmPage.IsEnabled = true;
-            
-            
+                 
             return View("FilmPage", film);
         }
     }

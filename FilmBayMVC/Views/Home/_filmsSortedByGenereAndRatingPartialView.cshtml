@@ -2,8 +2,10 @@
 @ViewBag.PageNumber
 
 @{
+    
     if (Model.filmTableList.Count() > ViewBag.PageNumber * 10)
     {
+        
         int numberOfFilmsInView;
         if (ViewBag.PageNumber * 10 + 10 > Model.filmTableList.Count())
         {
@@ -16,13 +18,22 @@
 
         for (int i = (ViewBag.PageNumber * 10); i < numberOfFilmsInView; i++)
         {
-            <div>
-                @Model.filmTableList[i].title;
+            <div class="row" style="height:190px; margin-top:5px;margin-bottom:5px">
+                <div   class="col-lg-3">
+                     <img style="height:190px" src=@Model.filmTableList[i].poster_url  />
+                </div>
+                <div class="col-lg-9">
+                    @Model.filmTableList[i].title;
+                </div>
             </div>
         }
-           int numberOfPages = Model.filmTableList.Count / 10;
+           int numberOfPages = Model.filmTableList.Count / 10;  
+           if (Model.filmTableList.Count % 10 > 0)
+           {
+               numberOfPages += 1;
+           }
            for (int i = 0; i < numberOfPages; i++) {
                <button type="button" id=@i class="btn btn-link" onclick="openPageNumber(this.id)">@i</button>
-        }   
+            }   
     }
 }

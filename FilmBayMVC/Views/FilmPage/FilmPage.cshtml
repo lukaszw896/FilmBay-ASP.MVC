@@ -22,7 +22,9 @@
 <div class="container">
     @{
         String filmid = Model.filmPageModel.id.ToString();
+        <label id="idfilm">@filmid</label>
      }
+    </div>
 <div class="row">
     <div class="col-sm-2">
         <img src="@Model.filmPageModel.poster" class="img-responsive" style="height:230px" />
@@ -168,7 +170,7 @@
                 <!-- Left and right controls -->
                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                    <span class="sr-only" id="prev">Previous</span>
                 </a>
                 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
@@ -194,13 +196,13 @@
                         <div class="modal-body">
                             <form>
                           <div class="form-group">
-                           <textarea class="form-control" id="comment" style="width:auto"></textarea>
+                           <textarea class="form-control" id="comment" style="width:auto">xxxxx</textarea>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="commentClick()">Add</button>
+                            <button type="button" class="btn btn-primary" onclick="commentClick(comment.value)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -219,11 +221,11 @@
     function voteClick(value) {
         var number = value;
         alert(number + " number");
-        var filmId = document.getElementById("filmid").textContent;
+          var filmId = document.getElementById("idfilm").textContent;
         alert(filmId+" film id");
         $.ajax({
 
-            url: '@Url.Action("Vote", "FilmPage")' + '?number=' + number + '&filmid=' +filmid,
+            url: '@Url.Action("Vote", "FilmPage")' + '?number=' + number + '&filmid=' +filmId,
             data: {}, //parameters go here in object literal form
             type: 'GET',
             //datatype: 'json',
@@ -233,11 +235,14 @@
     }
 
 
-    function commentClick() {
-        var comment = document.getElementById("comment").textContent;
+    function commentClick(comment) {
+        var comment = comment;
+        var filmId = document.getElementById("idfilm").textContent;
+        alert(filmId);
+        alert(comment)
         $.ajax({
    
-            url: '@Url.Action("Vote", "FilmPage")',
+            url: '@Url.Action("Comment", "FilmPage")' + '?comment=' + comment + '&filmid=' + filmId,
             data: {}, //parameters go here in object literal form
             type: 'GET',
             //datatype: 'json',
