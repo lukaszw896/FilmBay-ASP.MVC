@@ -56,31 +56,8 @@ namespace FilmBayMVC.Controllers
         {
               FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
             string userid = User.Identity.GetUserId().ToString();
-           // string username = User.Identity.Name.ToString();
-
-            MyLINQDataContext con = new MyLINQDataContext();
-            comment_table ct = new comment_table();
-      
-            ct.id_film = filmid;
-            ct.id= userid;
-
-            bool Alreadycommented = (con.comment_tables.AsParallel().Where(s => s.id_film == filmid && s.id == userid).Count()) > 0;
-           
-                if (Alreadycommented == true)
-                {
-                    ct.comment = comment;
-                    DBAccess.UpdateComment(ct);
-                    con.Dispose();
-                }
-                else
-                {
-                    ct.comment = comment;
-                    DBAccess.AddComment(ct);
-
-                    con.Dispose();
-                }
-                con.Dispose();
-                 
+          
+            await DBAccess.Commenting(filmid, userid, comment);
             return View("FilmPage", film);
         }
     }

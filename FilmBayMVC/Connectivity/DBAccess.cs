@@ -1187,6 +1187,36 @@ namespace FilmBayMVC
             return ft.id_film;
         }
 
+        public async  static Task Commenting(int filmid, string userid, string comment)
+        {
+
+            await Task.Run(() =>
+               {
+            MyLINQDataContext con = new MyLINQDataContext();
+            comment_table ct = new comment_table();
+
+            ct.id_film = filmid;
+            ct.id = userid;
+
+            bool Alreadycommented = (con.comment_tables.AsParallel().Where(s => s.id_film == filmid && s.id == userid).Count()) > 0;
+
+            if (Alreadycommented == true)
+            {
+                ct.comment = comment;
+                DBAccess.UpdateComment(ct);
+                con.Dispose();
+            }
+            else
+            {
+                ct.comment = comment;
+                DBAccess.AddComment(ct);
+
+                con.Dispose();
+            }
+            con.Dispose();
+            });
+
+        }
 
 
     }

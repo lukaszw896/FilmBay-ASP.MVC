@@ -23,7 +23,8 @@
                      <img style="height:190px" src=@Model.filmTableList[i].poster_url  />
                 </div>
                 <div class="col-lg-9">
-                    @Model.filmTableList[i].title;
+                    @Html.ActionLink(@Model.filmTableList[i].title, "FilmPage", "FilmPage", new { id = Model.filmTableList[i].id_film }, null)   (@Model.filmTableList[i].release_date.ToString().Substring(0,4))
+                    
                 </div>
             </div>
         }
