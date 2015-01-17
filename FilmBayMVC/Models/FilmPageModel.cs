@@ -22,6 +22,7 @@ namespace FilmBayMVC.Models
 
         public List<string> Producers { get; set; }
 
+        public List<string> Comments { get; set; }
         public List<string> Languages { get; set; }
 
         public List<music_creator_table> Composers { get; set; }
