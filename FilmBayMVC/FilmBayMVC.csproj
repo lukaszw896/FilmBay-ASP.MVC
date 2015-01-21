@@ -198,13 +198,21 @@
     <Content Include="App_Data\aspnet-FilmBayMVC-20150104082632_log.ldf">
       <DependentUpon>aspnet-FilmBayMVC-20150104082632.mdf</DependentUpon>
     </Content>
+    <Content Include="bin\FilmBayMVC.dll" />
+    <Content Include="bin\FilmBayMVC.pdb" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts.css" />
+    <Content Include="Content\star-rating.css" />
+    <Content Include="Content\star-rating.min.css" />
+    <Content Include="css\star-rating.css" />
+    <Content Include="css\star-rating.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="js\star-rating.js" />
+    <Content Include="js\star-rating.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Models\MyLINQ.dbml">
@@ -232,6 +240,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\star-rating.js" />
+    <Content Include="Scripts\star-rating.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -278,6 +288,7 @@
     <Content Include="Views\Home\_dropDownListPartialView.cshtml" />
     <Content Include="Views\Home\_filmsSortedByGenereAndRatingPartialView.cshtml" />
     <Content Include="Views\FilmPage\Index.cshtml" />
+    <Content Include="Views\FilmPage\_PartialComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

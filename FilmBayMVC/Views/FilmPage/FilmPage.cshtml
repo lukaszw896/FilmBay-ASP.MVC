@@ -2,13 +2,16 @@
 @{
     ViewBag.Title = "FilmPage";
 }
-
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
-
-
+<head>
+    <title>Filmpage</title>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="../css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="../js/star-rating.js" type="text/javascript"></script>
+</head>
 <style>
     .carousel-inner > .item > img,
     .carousel-inner > .item > a > img {
@@ -29,8 +32,9 @@
 <div class="container">
     @{
         String filmid = Model.filmPageModel.id.ToString();
-        <label id="idfilm">@filmid</label>
-     }
+        <label hidden id="idfilm">@filmid</label>
+    <input id="input-21" value="@Math.Round(Double.Parse(Model.filmPageModel.rating), MidpointRounding.AwayFromZero)" type="number" class="rating-loading" data-size="sm" readonly>
+}
     </div>
 <div class="row">
     <div class="col-sm-2">
@@ -55,7 +59,7 @@
             <div class="row" id=""><br /></div>
             <div class="row">
                 <div class="col-sm-2">
-                    @Model.filmPageModel.duration
+                    @Model.filmPageModel.duration @Model.filmPageModel.rating
                 </div>
             </div>
             <div class="row">
@@ -108,17 +112,29 @@
             </div>
 
         </div>
-        <div class="col-sm-5">
-            <ul class="pagination">
-                <li id="1" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="1" ></span></a></li>
-                <li id="2" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="2" ></span></a></li>
-                <li id="3" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="3" ></span></a></li>
-                <li id="4" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="4" ></span></a></li>
-                <li id="5" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="5" ></span></a></li>
-            </ul>
+      
+    @*
+    <div class="col-sm-5">
+        <ul class="pagination">
+            <li id="1" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="1" ></span></a></li>
+            <li id="2" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="2" ></span></a></li>
+            <li id="3" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="3" ></span></a></li>
+            <li id="4" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="4" ></span></a></li>
+            <li id="5" onclick="voteClick(this.id)"><a href="#"><span class="glyphicon glyphicon-star" id="5" ></span></a></li>
+        </ul>
+        </div>*@
+    </div>
+    </div>
+
+
+<div class="row">
+    <div class="col-sm-2"><strong>My Score:</strong></div>
+    <div class="col-sm-6">
+    <input id="input-21d" value="0" type="number" class="rating-loading" min=0 max=5 step=0.5 data-size="sm">
         </div>
-    </div>
-    </div>
+</div>
+
+
     <div class="row">
         <div class="row">
             <br /><br />
@@ -176,20 +192,24 @@
 
 
     <div class="row"><br /><br /></div>
-
-<div class="row">
-        @if (Model.filmPageModel.Comments != null)
-        {
-
-            for (int i = 0; i < Model.filmPageModel.Comments.Count; i++)
+        <div id="PartialComments" class="PartialComments">
+            @{Html.RenderPartial("_PartialComments", Model);}
+        </div>
+@*
+    <div class="row">
+            @if (Model.filmPageModel.Comments != null)
             {
-                <div class="col-sm-3">
-                    @Model.filmPageModel.Comments[i] <label> </label>
-                </div>
-            }
-        }
 
-</div>
+                for (int i = 0; i < Model.filmPageModel.Comments.Count; i++)
+                {
+                    <div class="col-sm-3">
+
+                        @Model.filmPageModel.Comments[i] <label> </label>
+                    </div>
+                }
+            }
+
+    </div>*@
 
 
 
@@ -223,13 +243,13 @@
                         <div class="modal-body">
                             <form>
                           <div class="form-group">
-                           <textarea class="form-control" id="comment" style="width:auto">xxxxx</textarea>
+                           <textarea class="form-control" id="comment" style="width:auto"></textarea>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="commentClick(comment.value)">Add</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="commentClick(comment.value)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -307,6 +327,24 @@
         $('#myCarousel').carousel(value);
         alert(value);
     }
+    $('#input-21d').on('rating.change', function (event, value, caption) {
+     //   alert(value);
+        voteClick(value);
+        console.log(value);
+        console.log(caption);
+    });
+
+    $("#input-21").rating({
+        clearButton: '',
+        clearElement: "", 
+        captionElement: "#kv-caption"
+    });
+    $("#input-21d").rating({
+        clearButton: '',
+        clearElement: "", 
+        captionElement: "#kv-caption"
+    });
+
 
     function voteClick(value) {
         var number = value;
@@ -337,21 +375,17 @@
             error: function () { loadingDiv.style.visibility = "hidden"; alert('not voted'); }
         });
     }
-
+    function genereDropdown_Click(value) {
+        replaceButtonText("dropdownMenu1", value);
+        $('#filmListPartialView').load('@Url.Action("changeGenere", "Home")' + '?genereName=' + value);
+    }
 
     function commentClick(comment) {
         var comment = comment;
         var filmId = document.getElementById("idfilm").textContent;
         alert(filmId);
         alert(comment)
-        $.ajax({
-   
-            url: '@Url.Action("Comment", "FilmPage")' + '?comment=' + comment + '&filmid=' + filmId,
-            data: {}, //parameters go here in object literal form
-            type: 'GET',
-            //datatype: 'json',
-            success: function (data) { loadingDiv.style.visibility = "hidden"; alert('voted'); },
-            error: function () { loadingDiv.style.visibility = "hidden"; alert('not voted'); }
-        });
+        $('#PartialComments').load('@Url.Action("Comment", "FilmPage")' + '?comment=' + comment + '&filmid=' + filmId);
+
     }
 </script>
