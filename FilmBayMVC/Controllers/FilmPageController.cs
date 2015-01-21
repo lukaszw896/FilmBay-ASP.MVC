@@ -72,7 +72,7 @@ namespace FilmBayMVC.Controllers
               FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
             string userid = User.Identity.GetUserId().ToString();
              await DBAccess.Commenting(filmid, userid, comment);
-             return PartialView("_PartialComments", film);
+           return PartialView("_PartialComments", film);
            // return View("FilmPage", film);
         }
     }
