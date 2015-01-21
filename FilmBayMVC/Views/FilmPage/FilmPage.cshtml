@@ -33,7 +33,7 @@
     @{
         String filmid = Model.filmPageModel.id.ToString();
         <label hidden id="idfilm">@filmid</label>
-    <input id="input-21" value="@Math.Round(Double.Parse(Model.filmPageModel.rating), MidpointRounding.AwayFromZero)" type="number" class="rating-loading" data-size="sm" readonly>
+    <input id="input-21" value="@Model.filmPageModel.rating" type="number" class="rating-loading" data-size="sm" readonly>
 }
     </div>
 <div class="row">

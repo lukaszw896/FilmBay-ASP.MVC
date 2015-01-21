@@ -20,11 +20,16 @@ namespace FilmBayMVC.Connectivity
             List<string> genres = await DBAccess.GetGenres(filmid);
             List<photos_table> photos = await DBAccess.GetPhotos(filmid);
             List<comment_table> comments = await DBAccess.GetComments(filmid);
-          
+                
+            if(f.rating.HasValue)
+            {
+                f.rating = Math.Round(Double.Parse(f.rating.ToString()), MidpointRounding.AwayFromZero);
+            }
 
 
             FilmPageModel film = new FilmPageModel();
            
+
             film.id = f.id_film;
             film.Director = f.director_name + " " + f.director_surname;
             film.poster = f.poster_url;

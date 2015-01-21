@@ -69,10 +69,13 @@ namespace FilmBayMVC.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public async Task<ActionResult> Comment(string comment, int filmid)
         {
-              FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
+            ModelsKeeper mk = new ModelsKeeper();
+              
             string userid = User.Identity.GetUserId().ToString();
              await DBAccess.Commenting(filmid, userid, comment);
-           return PartialView("_PartialComments", film);
+             FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
+             mk.filmPageModel = film;
+           return PartialView("_PartialComments", mk);
            // return View("FilmPage", film);
         }
     }
