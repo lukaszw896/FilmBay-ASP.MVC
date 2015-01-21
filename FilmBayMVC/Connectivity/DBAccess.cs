@@ -694,6 +694,17 @@ namespace FilmBayMVC
                 return Comments;
             });
         }
+        public async static Task<AspNetUser> GetUser(string userid)
+        {
+            return await Task.Run(() =>
+            {
+                MyLINQDataContext con = new MyLINQDataContext();
+                AspNetUser user = new AspNetUser();
+                user = (from u in con.AspNetUsers where u.Id == userid select u).FirstOrDefault();
+                con.Dispose();
+                return user;
+            });
+        }
         public async static Task<film_table> LoadFilmFromId(int filmid)
         {
             return await Task.Run(() =>
@@ -1189,12 +1200,14 @@ namespace FilmBayMVC
 
         public async  static Task Commenting(int filmid, string userid, string comment)
         {
-
+            AspNetUser user = await GetUser(userid);
             await Task.Run(() =>
                {
             MyLINQDataContext con = new MyLINQDataContext();
             comment_table ct = new comment_table();
 
+            string username = user.UserName;
+            username = username.Substring(0, username.IndexOf('@'));
             ct.id_film = filmid;
             ct.id = userid;
 
@@ -1202,13 +1215,13 @@ namespace FilmBayMVC
 
             if (Alreadycommented == true)
             {
-                ct.comment = comment;
+                ct.comment = username + ": " +comment;
                 DBAccess.UpdateComment(ct);
                 con.Dispose();
             }
             else
             {
-                ct.comment = comment;
+                ct.comment = username + ": " + comment;
                 DBAccess.AddComment(ct);
 
                 con.Dispose();

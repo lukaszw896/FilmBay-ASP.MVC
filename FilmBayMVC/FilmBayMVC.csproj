@@ -278,6 +278,7 @@
     <Content Include="Views\Home\_dropDownListPartialView.cshtml" />
     <Content Include="Views\Home\_filmsSortedByGenereAndRatingPartialView.cshtml" />
     <Content Include="Views\FilmPage\Index.cshtml" />
+    <Content Include="Views\FilmPage\_PartialComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

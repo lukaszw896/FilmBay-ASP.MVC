@@ -52,13 +52,28 @@ namespace FilmBayMVC.Controllers
             FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
             return View("FilmPage", film);
         }
+        /*
+        public async Task<ActionResult> Edit()
+        {
+            int id = 26;
+            FilmPageModel film = await ModelCreator.getFilmPageModel(id);
+
+            ModelsKeeper modelsKeeper = new ModelsKeeper() { filmPageModel = film };
+
+            return View("EditFilm", modelsKeeper);
+        }*/
+
+
+
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public async Task<ActionResult> Comment(string comment, int filmid)
         {
               FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
             string userid = User.Identity.GetUserId().ToString();
-          
-            await DBAccess.Commenting(filmid, userid, comment);
-            return View("FilmPage", film);
+             await DBAccess.Commenting(filmid, userid, comment);
+             return PartialView("_PartialComments", film);
+           // return View("FilmPage", film);
         }
     }
 

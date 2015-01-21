@@ -19,10 +19,12 @@ namespace FilmBayMVC.Connectivity
             List<string> languages = await DBAccess.GetLanguages(filmid);
             List<string> genres = await DBAccess.GetGenres(filmid);
             List<photos_table> photos = await DBAccess.GetPhotos(filmid);
-            FilmPageModel film = new FilmPageModel();
             List<comment_table> comments = await DBAccess.GetComments(filmid);
+          
 
 
+            FilmPageModel film = new FilmPageModel();
+           
             film.id = f.id_film;
             film.Director = f.director_name + " " + f.director_surname;
             film.poster = f.poster_url;
@@ -38,6 +40,7 @@ namespace FilmBayMVC.Connectivity
             film.Comments = new List<string>();
             foreach(comment_table t in comments)
             {
+           //     string user = await DBAccess.GetUser(t.id, filmid);
                 film.Comments.Add(t.comment);
 
             }

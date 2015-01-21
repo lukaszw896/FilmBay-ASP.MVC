@@ -29,7 +29,7 @@
 <div class="container">
     @{
         String filmid = Model.filmPageModel.id.ToString();
-        <label id="idfilm">@filmid</label>
+        <label hidden id="idfilm">@filmid</label>
      }
     </div>
 <div class="row">
@@ -55,7 +55,7 @@
             <div class="row" id=""><br /></div>
             <div class="row">
                 <div class="col-sm-2">
-                    @Model.filmPageModel.duration
+                    @Model.filmPageModel.duration @Model.filmPageModel.rating
                 </div>
             </div>
             <div class="row">
@@ -176,20 +176,24 @@
 
 
     <div class="row"><br /><br /></div>
-
-<div class="row">
-        @if (Model.filmPageModel.Comments != null)
-        {
-
-            for (int i = 0; i < Model.filmPageModel.Comments.Count; i++)
+        <div id="PartialComments" class="PartialComments">
+            @{Html.RenderPartial("_PartialComments", Model);}
+        </div>
+@*
+    <div class="row">
+            @if (Model.filmPageModel.Comments != null)
             {
-                <div class="col-sm-3">
-                    @Model.filmPageModel.Comments[i] <label> </label>
-                </div>
-            }
-        }
 
-</div>
+                for (int i = 0; i < Model.filmPageModel.Comments.Count; i++)
+                {
+                    <div class="col-sm-3">
+
+                        @Model.filmPageModel.Comments[i] <label> </label>
+                    </div>
+                }
+            }
+
+    </div>*@
 
 
 
@@ -223,13 +227,13 @@
                         <div class="modal-body">
                             <form>
                           <div class="form-group">
-                           <textarea class="form-control" id="comment" style="width:auto">xxxxx</textarea>
+                           <textarea class="form-control" id="comment" style="width:auto"></textarea>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="commentClick(comment.value)">Add</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="commentClick(comment.value)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -337,21 +341,17 @@
             error: function () { loadingDiv.style.visibility = "hidden"; alert('not voted'); }
         });
     }
-
+    function genereDropdown_Click(value) {
+        replaceButtonText("dropdownMenu1", value);
+        $('#filmListPartialView').load('@Url.Action("changeGenere", "Home")' + '?genereName=' + value);
+    }
 
     function commentClick(comment) {
         var comment = comment;
         var filmId = document.getElementById("idfilm").textContent;
         alert(filmId);
         alert(comment)
-        $.ajax({
-   
-            url: '@Url.Action("Comment", "FilmPage")' + '?comment=' + comment + '&filmid=' + filmId,
-            data: {}, //parameters go here in object literal form
-            type: 'GET',
-            //datatype: 'json',
-            success: function (data) { loadingDiv.style.visibility = "hidden"; alert('voted'); },
-            error: function () { loadingDiv.style.visibility = "hidden"; alert('not voted'); }
-        });
+        $('#PartialComments').load('@Url.Action("Comment", "FilmPage")' + '?comment=' + comment + '&filmid=' + filmId);
+
     }
 </script>
