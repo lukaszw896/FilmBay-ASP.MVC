@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FilmBayMVC.Connectivity;
+using Microsoft.AspNet.Identity;
 using FilmBayMVC.ViewModels;
 namespace FilmBayMVC.Controllers
 {
@@ -14,11 +15,22 @@ namespace FilmBayMVC.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            bool isAdmin = DBAccess.isAdmin(User.Identity.GetUserName());
+            if (!isAdmin)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
         public ActionResult AdminPanel()
         {
 
+            bool isAdmin = DBAccess.isAdmin(User.Identity.GetUserName());
+            if (!isAdmin)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             return View();
         }

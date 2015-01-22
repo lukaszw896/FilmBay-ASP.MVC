@@ -21,9 +21,12 @@ namespace FilmBayMVC.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<ActionResult> FilmPage(int id)
+        public async Task<ActionResult> FilmPage(int id =-1)
         {
-          
+            if (id == -1)
+            {
+              return  RedirectToAction("Index", "Home");
+            }
             FilmPageModel film = await ModelCreator.getFilmPageModel(id);
           
             ModelsKeeper modelsKeeper = new ModelsKeeper() { filmPageModel = film };
