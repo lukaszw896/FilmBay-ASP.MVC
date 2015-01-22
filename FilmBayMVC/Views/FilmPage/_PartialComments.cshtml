@@ -3,11 +3,9 @@
 <div class="row">
     @if (Model.filmPageModel.Comments != null)
     {
-
         for (int i = 0; i < Model.filmPageModel.Comments.Count; i++)
         {
             <div class="col-sm-3">
-
                 @Model.filmPageModel.Comments[i] <label> </label>
             </div>
         }

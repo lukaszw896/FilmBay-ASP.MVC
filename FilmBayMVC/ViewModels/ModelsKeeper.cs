@@ -15,6 +15,7 @@ namespace FilmBayMVC.ViewModels
         public List<string> mainPageFilmPhotos;
         public List<string> generesList;
         public List <FilmToShow> filmsToShow;
+        public string genre;
         public ModelsKeeper()
         {
             this.movieSearchReturnObjectViewModels = new List<MovieSearchReturnObjectViewModel>();

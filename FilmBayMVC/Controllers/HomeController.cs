@@ -55,7 +55,7 @@ namespace FilmBayMVC.Controllers
         }
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public async Task<ActionResult> LoadPage(int id)
+        public async Task<ActionResult> LoadPage(int id, string genre)
         {
             ViewBag.PageNumber = id;
             ModelsKeeper modelsKeeper = new ModelsKeeper();
@@ -84,6 +84,31 @@ namespace FilmBayMVC.Controllers
                     }
                 }
             }
+            if (!(genre == null || genre == "All"))
+            {
+                int tmpCount = filmTable.Count();
+                for (int i = 0; i < tmpCount; i++)
+                {
+                    bool hasGenere = false;
+                    List<string> tmpGeneres = await DBAccess.GetGenres(filmTable[i].id_film);
+                    for (int j = 0; j < tmpGeneres.Count; j++)
+                    {
+                        if (tmpGeneres[j] == genre)
+                        {
+                            hasGenere = true;
+                            break;
+                        }
+                    }
+                    if (hasGenere == false)
+                    {
+                        filmTable.RemoveAt(i);
+                        i--;
+                        tmpCount--;
+                    }
+
+                }
+            }
+            modelsKeeper.genre = genre;
             modelsKeeper.filmTableList = filmTable;
             return PartialView("_filmsSortedByGenereAndRatingPartialView",modelsKeeper);
         }
@@ -92,6 +117,7 @@ namespace FilmBayMVC.Controllers
         public async Task<ActionResult> changeGenere(string genereName)
         {
             ViewBag.PageNumber = 0;
+            ViewBag.genere = genereName;
             ModelsKeeper modelsKeeper = new ModelsKeeper();
             List<film_table> filmTable = await DBAccess.GetAllFilms();
             List<string> photosUrl = new List<string>();
@@ -143,6 +169,7 @@ namespace FilmBayMVC.Controllers
                     }
                 }
             }
+            modelsKeeper.genre = genereName;
             modelsKeeper.filmTableList = filmTable;
             return PartialView("_filmsSortedByGenereAndRatingPartialView", modelsKeeper);
         }
