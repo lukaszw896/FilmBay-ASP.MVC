@@ -2,10 +2,10 @@
 @ViewBag.PageNumber
 
 @{
-    
+    <label id="genreKeeper" hidden>@Model.genre</label>
     if (Model.filmTableList.Count() > ViewBag.PageNumber * 10)
     {
-        
+
         int numberOfFilmsInView;
         if (ViewBag.PageNumber * 10 + 10 > Model.filmTableList.Count())
         {

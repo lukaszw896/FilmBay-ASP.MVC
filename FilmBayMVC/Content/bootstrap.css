@@ -761,6 +761,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  width:1140px;
 }
 
 .container:before,
@@ -4050,7 +4051,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   clear: both;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1140px) {
   .navbar {
     border-radius: 4px;
   }
@@ -4075,8 +4076,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-header:after {
   clear: both;
 }
-
-@media (min-width: 768px) {
+            
+@media (min-width: 1140px) {
   .navbar-header {
     float: left;
   }

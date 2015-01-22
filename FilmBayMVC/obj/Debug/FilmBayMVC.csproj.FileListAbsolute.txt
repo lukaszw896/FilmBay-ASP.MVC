@@ -107,4 +107,3 @@ C:\Users\Lino\Desktop\Project 3\FilmBayMVC\bin\Microsoft.Owin.Security.Twitter.x
 C:\Users\Lino\Desktop\Project 3\FilmBayMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Lino\Desktop\Project 3\FilmBayMVC\obj\Debug\FilmBayMVC.dll
 C:\Users\Lino\Desktop\Project 3\FilmBayMVC\obj\Debug\FilmBayMVC.pdb
-C:\Users\Lino\Desktop\Project 3\FilmBayMVC\obj\Debug\FilmBayMVC.csprojResolveAssemblyReference.cache
