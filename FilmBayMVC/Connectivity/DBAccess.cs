@@ -23,42 +23,44 @@ namespace FilmBayMVC
                 MyLINQDataContext con = new MyLINQDataContext();
                 film_table dane = new film_table();
                 bool nameinDB = (con.film_tables.AsParallel().Where(s => s.title == title && s.release_date == releasedate).Count()) > 0;
-             //   if (nameinDB == false)
+                 if (nameinDB == false)
                 {
-
-                    if (studio != null && studio.Trim() != "")
                     {
-                        dane.film_studio = studio;
+
+                        if (studio != null && studio.Trim() != "")
+                        {
+                            dane.film_studio = studio;
+                        }
+                        if (story.Trim() != "")
+                        {
+                            dane.storyline = story;
+                        }
+
+                        dane.director_name = directorname;
+                        dane.director_surname = directorsurname;
+                        dane.film_price = price;
+
+                        dane.title = title;
+                        dane.title_orginal = originaltitle;
+                        dane.orginal_language = originallanguage;
+                        dane.duration = duration;
+
+                        if (posterurl == null)
+                        {
+                            posterurl = "stockphoto.jpg";
+                        }
+
+                        dane.poster_url = posterurl;
+                        dane.age_restriction = agerestriction;
+                        dane.publisher = publisher;
+                        dane.release_date = releasedate;
+                        DBAccess.AddFilm(dane);
+                        con.Dispose();
+                        return dane.id_film;
+
                     }
-                    if (story.Trim() != "")
-                    {
-                        dane.storyline = story;
-                    }
-
-                    dane.director_name = directorname;
-                    dane.director_surname = directorsurname;
-                    dane.film_price = price;
-
-                    dane.title = title;
-                    dane.title_orginal = originaltitle;
-                    dane.orginal_language = originallanguage;
-                    dane.duration = duration;
-
-                    if (posterurl == null)
-                    {
-                        posterurl = "stockphoto.jpg";
-                    }
-
-                    dane.poster_url = posterurl;
-                    dane.age_restriction = agerestriction;
-                    dane.publisher = publisher;
-                    dane.release_date = releasedate;
-                    DBAccess.AddFilm(dane);
-                    con.Dispose();
-                    return dane.id_film;
-
                 }
-                /*
+                
                 else
                 {
                     dane= con.film_tables.AsParallel().Where(s => s.title == title && s.release_date==releasedate).FirstOrDefault();
@@ -67,10 +69,10 @@ namespace FilmBayMVC
                     //MessageBox.Show("A film you are trying to add already exist in the database. Our system doesn't allow to alter or modify already existing films (Avaliable in next version)");
 
 
-              //      return -1;
+                    return -1;
                 
-                }&/
-                */
+                }
+                
             });
 
         }
@@ -855,12 +857,14 @@ namespace FilmBayMVC
         }
 
 
-        public async static void vote(int rating, int filmid, int voteforfilmresult)
+        public async static Task vote(int rating, int filmid, int voteforfilmresult)
         {
+             
             //0 - no vote 1- voted 2- admin
             MyLINQDataContext con = new MyLINQDataContext();
             film_table ft = await DBAccess.LoadFilmFromId(filmid);
-
+            await Task.Run(() =>
+            {
             if (ft.nuber_of_votes == null)
             {
                 ft.nuber_of_votes = 1;
@@ -895,10 +899,10 @@ namespace FilmBayMVC
                     con.Dispose();
 
                 }
-
             }
             DBAccess.UpdateRating(ft);
-
+            return;
+            });
         }
 
         public static async Task<user_table> Userlogin(String login, String password)
