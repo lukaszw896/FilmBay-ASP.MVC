@@ -36,7 +36,7 @@ namespace FilmBayMVC.Controllers
     
         }
         [HttpGet]
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+
         public async Task <ActionResult> Vote ( int number, int filmid)
         
         {
