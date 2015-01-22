@@ -32,25 +32,30 @@ namespace FilmBayMVC.Controllers
             
     
         }
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public async Task <ActionResult> Vote ( int number, int filmid)
         
         {
            string userid = User.Identity.GetUserId().ToString();
-   
+           ModelsKeeper mk = new ModelsKeeper();
            int voteforfilmresult= await DBAccess.VoteForFilm(filmid, userid, number);
-           DBAccess.vote(number, filmid, voteforfilmresult);
+           await DBAccess.vote(number, filmid, voteforfilmresult);
            FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
-
-            return View("FilmPage", film);
+           mk.filmPageModel = film;
+            return PartialView("_PartialRating", mk);
         }
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public async Task<ActionResult> Buy(int filmid)
         {
+            ModelsKeeper mk = new ModelsKeeper();
             string userid = User.Identity.GetUserId().ToString();
 
                    await DBAccess.BuyFilm(filmid, userid);
-
             FilmPageModel film = await ModelCreator.getFilmPageModel(filmid);
-            return View("FilmPage", film);
+            mk.filmPageModel = film;
+            return View("FilmPage", mk);
         }
         /*
         public async Task<ActionResult> Edit()

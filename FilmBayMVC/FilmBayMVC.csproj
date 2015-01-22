@@ -289,6 +289,7 @@
     <Content Include="Views\Home\_filmsSortedByGenereAndRatingPartialView.cshtml" />
     <Content Include="Views\FilmPage\Index.cshtml" />
     <Content Include="Views\FilmPage\_PartialComments.cshtml" />
+    <Content Include="Views\FilmPage\_PartialRating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

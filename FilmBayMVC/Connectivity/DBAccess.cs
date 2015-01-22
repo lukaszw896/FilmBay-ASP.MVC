@@ -857,12 +857,14 @@ namespace FilmBayMVC
         }
 
 
-        public async static void vote(int rating, int filmid, int voteforfilmresult)
+        public async static Task vote(int rating, int filmid, int voteforfilmresult)
         {
+             
             //0 - no vote 1- voted 2- admin
             MyLINQDataContext con = new MyLINQDataContext();
             film_table ft = await DBAccess.LoadFilmFromId(filmid);
-
+            await Task.Run(() =>
+            {
             if (ft.nuber_of_votes == null)
             {
                 ft.nuber_of_votes = 1;
@@ -897,10 +899,10 @@ namespace FilmBayMVC
                     con.Dispose();
 
                 }
-
             }
             DBAccess.UpdateRating(ft);
-
+            return;
+            });
         }
 
         public static async Task<user_table> Userlogin(String login, String password)
